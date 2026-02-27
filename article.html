@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">文章 — QuanTimes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="news.css" />
+  <style>
+    #prog { position:fixed;top:0;left:0;height:3px;background:#c0392b;z-index:300;width:0%;transition:width .1s; }
+    .bc { max-width:860px;margin:0 auto;padding:16px 24px 0;font-size:13px;color:#6b7280;display:flex;align-items:center;gap:6px;flex-wrap:wrap; }
+    .bc a { color:#1d4ed8;text-decoration:none; } .bc a:hover{text-decoration:underline;}
+    .art-wrap { max-width:860px;margin:0 auto;padding:28px 24px 80px; }
+    .sec-label { display:inline-block;background:#c0392b;color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-bottom:14px; }
+    .art-title { font-family:'Noto Serif SC',Georgia,serif;font-size:clamp(24px,4vw,38px);font-weight:900;line-height:1.25;color:#1a1a1a;margin-bottom:14px; }
+    .art-sub { font-family:'Noto Serif SC',serif;font-size:clamp(15px,2vw,18px);font-weight:400;color:#3d3d3d;border-left:4px solid #c0392b;padding-left:16px;margin-bottom:20px;line-height:1.55; }
+    .art-meta { display:flex;flex-wrap:wrap;gap:6px 18px;padding:12px 0;border-top:1px solid #e5e7eb;border-bottom:1px solid #e5e7eb;margin-bottom:22px;font-size:13px;color:#6b7280; }
+    .art-meta .au { font-weight:600;color:#3d3d3d; }
+    .share-row { display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap; }
+    .sbtn { display:inline-flex;align-items:center;font-size:12px;font-weight:600;padding:6px 14px;border-radius:4px;border:none;cursor:pointer;letter-spacing:.04em;transition:opacity .15s; }
+    .sbtn:hover{opacity:.8;} .tw{background:#000;color:#fff;} .li{background:#0a66c2;color:#fff;} .cp{background:#e5e7eb;color:#3d3d3d;}
+    .hero-banner { width:100%;height:300px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:22px;overflow:hidden;position:relative; }
+    .hero-banner img { width:100%;height:100%;object-fit:cover;display:block; }
+    .hero-letter { font-family:'Playfair Display',serif;font-size:100px;font-weight:900;color:rgba(255,255,255,.18);letter-spacing:.06em; }
+    .hero-caption { font-size:12px;color:#6b7280;margin-top:6px;font-style:italic;margin-bottom:22px; }
+    .kp-box { background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:18px 22px;margin-bottom:24px; }
+    .kp-box h4 { font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#1d4ed8;margin-bottom:10px; }
+    .kp-box ul { list-style:none;display:flex;flex-direction:column;gap:7px; }
+    .kp-box li { font-size:14px;color:#1e3a5f;padding-left:18px;position:relative; }
+    .kp-box li::before { content:'▶';position:absolute;left:0;color:#1d4ed8;font-size:9px;top:5px; }
+    .body-copy { font-family:'Noto Serif SC',Georgia,serif;font-size:17px;line-height:1.9;color:#1a1a1a; }
+    .body-copy p { margin-bottom:22px; }
+    .body-copy h3 { font-family:'Noto Sans SC',sans-serif;font-size:18px;font-weight:700;margin:32px 0 14px;padding-bottom:8px;border-bottom:2px solid #e5e7eb; }
+    .body-copy h3::before { content:'';display:inline-block;width:4px;height:16px;background:#c0392b;margin-right:10px;vertical-align:middle;border-radius:2px; }
+    .pq { border-left:4px solid #c0392b;margin:28px 0;padding:16px 22px;background:#f8f9fa;border-radius:0 6px 6px 0; }
+    .pq p { font-family:'Noto Serif SC',serif;font-size:18px;font-style:italic;color:#3d3d3d;line-height:1.65;margin:0; }
+    .pq cite { display:block;font-size:12px;color:#6b7280;margin-top:8px;font-style:normal;font-weight:600; }
+    .tags { display:flex;flex-wrap:wrap;gap:8px;margin-top:32px;padding-top:22px;border-top:1px solid #e5e7eb; }
+    .tag { font-size:12px;font-weight:600;padding:4px 10px;border-radius:3px;background:#e5e7eb;color:#3d3d3d;text-decoration:none;transition:background .15s; }
+    .tag:hover{background:#d1d5db;}
+    /* related */
+    .rel-section { max-width:860px;margin:0 auto;padding:0 24px 60px; }
+    .rel-hdr { font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:22px; }
+    .rel-hdr::before { content:'';width:4px;height:16px;background:#c0392b;border-radius:2px; }
+    .rel-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:18px; }
+    @media(max-width:680px){.rel-grid{grid-template-columns:1fr;}}
+    .rel-card { background:#fff;border:1px solid #e5e7eb;border-top:3px solid #c0392b;border-radius:0 0 6px 6px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:box-shadow .2s; }
+    .rel-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.1);}
+    .rel-body { padding:16px; }
+    .rel-body .rl { font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#c0392b;margin-bottom:6px; }
+    .rel-body h3 { font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;line-height:1.45;color:#1a1a1a; }
+    .rel-body .rm { font-size:11px;color:#6b7280;margin-top:8px; }
+    /* 404 */
+    .not-found { text-align:center;padding:80px 24px; }
+    .not-found h2 { font-size:32px;font-weight:900;margin-bottom:12px; }
+    .not-found p { color:#6b7280;margin-bottom:20px; }
+    .not-found a { background:#c0392b;color:#fff;padding:10px 20px;border-radius:4px;text-decoration:none;font-weight:600; }
+  </style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="breaking-banner"><span class="label">Breaking</span>中国"亚当"量子计算机宣告震动全球科技界</div>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="logo" href="index.html">Quantum<span>Times</span></a>
+    <nav><ul class="nav-links" id="main-nav">
+      <li><a href="keji.html">科技</a></li>
+      <li><a href="geopolitics.html">地缘政治</a></li>
+      <li><a href="quantum.html">量子计算</a></li>
+      <li><a href="ai.html">人工智能</a></li>
+      <li><a href="security.html">网络安全</a></li>
+      <li><a href="markets.html">市场</a></li>
+    </ul></nav>
+    <span class="nav-date" id="live-date"></span>
+  </div>
+</header>
+
+<div class="bc" id="bc">
+  <a href="index.html">首页</a><span>›</span>
+  <a href="#" id="bc-cat">分类</a><span>›</span>
+  <span id="bc-title" style="color:#1a1a1a;max-width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+</div>
+
+<div id="article-root"></div>
+<div id="related-root"></div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col"><h4>QuanTimes</h4><ul><li><a href="#">关于我们</a></li><li><a href="#">编辑方针</a></li><li><a href="#">联系编辑部</a></li></ul></div>
+    <div class="footer-col"><h4>报道领域</h4><ul><li><a href="keji.html">科技</a></li><li><a href="quantum.html">量子计算</a></li><li><a href="ai.html">人工智能</a></li><li><a href="security.html">网络安全</a></li><li><a href="markets.html">市场</a></li></ul></div>
+    <div class="footer-col"><h4>关注我们</h4><ul><li><a href="#">𝕏 Twitter</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">微信公众号</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 QuanTimes · 保留所有权利</span><span>隐私政策 · 服务条款</span></div>
+</footer>
+
+<script>
+/* ── ARTICLE DATABASE ──────────────────────────────────────────────────── */
+const DB = {
+
+  /* ═══════════════ 科技 ═══════════════ */
+  'gpt6': {
+    title: 'OpenAI o3 推理模型正式发布：AIME数学竞赛得分96.7%，ARC-AGI基准首超人类水准',
+    subtitle: '全新推理架构突破博士级问题解答门槛，OpenAI宣布已正式进入AGI准备阶段，竞争对手加速跟进。',
+    category: '人工智能', catPage: 'ai.html', catNav: 3,
+    author: '陈思远', role: 'AI编辑', date: '2026年2月24日', readTime: '6',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#312e81,#1e1b4b)', letter:'AI' },
+    tags: ['OpenAI','o3','推理模型','AGI','大语言模型'],
+    keyPoints: [
+      'o3在AIME 2024数学竞赛中得分96.7%，远超人类顶尖选手',
+      'ARC-AGI基准得分87.5%，首次超越人类平均水准（85%）',
+      '推理成本较GPT-4o降低约60%，上下文窗口扩展至200万token',
+      '欧盟已将新一代模型列入高风险AI系统强制评估清单'
+    ],
+    body: `<p>OpenAI于2024年12月对外正式披露其新一代推理模型o3的评测数据，结果震撼了整个人工智能学术界。在美国数学邀请赛（AIME 2024）中，o3取得了96.7%的得分——而此前最顶尖的AI系统在同一测试上的得分约为12%至16%；在专为测试人类级推理能力设计的ARC-AGI基准上，o3达到87.5%，是首个在该基准上超越人类平均水准（约85%）的AI系统。OpenAI首席执行官Sam Altman随即表示，"我们已经看到了AGI的轮廓。"</p>
+    <div class="pq"><p>"o3代表的不仅是参数量的扩张，而是推理架构的根本性重构——我们第一次在模型中看到了类似'慢思考'的真实涌现。"</p><cite>— OpenAI首席科学家 Jakub Pachocki</cite></div>
+    <p>从技术层面来看，o3属于OpenAI"o系列"推理模型的延续，其核心创新在于"扩展推理计算"（extended thinking compute）机制：模型在给出最终答案之前，会在内部进行大量的链式推理（chain-of-thought）步骤，相当于让模型"多想一会儿"。这一机制使其在需要多步推理的任务上表现出显著优势，包括高难度数学证明、复杂代码生成以及博士级科学问题解答。与o1相比，o3的推理能力提升幅度之大被外界描述为"数年之内最大的单次飞跃"。</p>
+    <p>然而，o3的能力提升也随之带来了新的监管压力与伦理讨论。欧盟AI法案监管机构已将包括o3在内的新一代大型推理模型列入"高风险AI系统"强制评估清单，要求在其面向公众部署前提交完整的风险评估报告与可解释性文档。与此同时，AI安全研究机构Anthropic和DeepMind亦分别表示，随着模型推理能力接近人类专家水准，"对齐失控"（misalignment risk）的潜在危害需要得到更严肃的对待。目前，OpenAI、谷歌、微软等主要科技公司正在竞相研发下一代推理模型，这场AI能力军备竞赛远未结束。</p>`,
+    related: ['alphafold','figure','tsmc']
+  },
+
+  'tsmc': {
+    title: '台积电N2制程进入量产，2nm芯片2025年下半年首发应用于苹果A19处理器',
+    subtitle: 'N2制程采用全新纳米片晶体管架构，相比N3E性能提升约15%，功耗降低约30%，台积电先进制程领先优势进一步扩大。',
+    category: '芯片', catPage: 'keji.html', catNav: 0,
+    author: '王俊凯', role: '产业编辑', date: '2026年2月23日', readTime: '5',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#4c1d95,#1e1b4b)', letter:'N2' },
+    tags: ['台积电','TSMC','2nm','N2','半导体','苹果'],
+    keyPoints: [
+      'N2制程2025年下半年进入量产，首批客户为苹果（A19）和NVIDIA',
+      '采用NSFET纳米片场效晶体管，相比N3E晶体管密度提升约16%',
+      'A14（1.4nm）制程研发全面加速，预计2027年进入风险量产',
+      '台积电亚利桑那州晶圆厂Fab 21预计2025年开始生产N4制程芯片'
+    ],
+    body: `<p>台积电（TSMC）宣布，其2nm制程（N2）已于2025年下半年正式进入量产阶段，首批采用N2制程的芯片将应用于苹果公司的A19系列移动处理器。N2是台积电迄今最先进的量产制程，采用全新的纳米片场效晶体管（NSFET）架构，这一设计取代了自N3以来沿用的鳍式场效晶体管（FinFET），使晶体管的电流控制能力大幅提升，从而在相同功耗下实现更高的计算性能。</p>
+    <div class="pq"><p>"N2制程是台积电历史上工程复杂度最高的节点之一，但我们的良率爬坡速度超出了最初预期。"</p><cite>— 台积电总裁 魏哲家（CC Wei）于法说会上表示</cite></div>
+    <p>与上一代N3E制程相比，N2在相同功耗下的性能提升约15%，或在相同性能下降低功耗约30%，晶体管密度提升约16%。这些数字在半导体行业内部被视为"接近物理极限的工程壮举"。台积电已同时启动N2P（增强版）和A14（1.4nm等效节点）的研发工作，其中A14被视为摩尔定律延续至2027年以后的关键技术节点。</p>
+    <p>在竞争格局方面，三星的3nm GAA制程自2022年投产以来良率问题持续困扰其量产进度，英特尔的18A制程则在工程验证阶段面临客户信心不足的挑战。台积电凭借N2的顺利量产，进一步巩固了其在全球先进制程领域的垄断性地位。与此同时，台积电位于美国亚利桑那州的Fab 21晶圆厂预计将于2025年开始生产N4制程芯片，这是该公司迄今在美国境内的最大规模制造投资，背后是美国芯片法案（CHIPS Act）补贴的战略驱动。</p>`,
+    related: ['china-chip','gpt6','leo-satellite']
+  },
+
+  'spacex': {
+    title: 'SpaceX星舰IFT-5任务成功：Mechazilla机械臂首次在空中捕获超重型助推器，人类航天史翻开新页',
+    subtitle: '史无前例的"筷子臂"捕获机制成功验证，Starship全流程回收技术路线正式确立，NASA Artemis登月计划节点得以稳定。',
+    category: '航天', catPage: 'keji.html', catNav: 0,
+    author: '刘星宇', role: '科学编辑', date: '2026年2月21日', readTime: '7',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#064e3b,#0f172a)', letter:'🚀' },
+    tags: ['SpaceX','Starship','星舰','Mechazilla','NASA','Artemis'],
+    keyPoints: [
+      '2024年10月13日IFT-5任务：Mechazilla机械臂首次成功在发射台空中捕获超重型助推器',
+      '星舰高121米，超重型助推器推力约900万磅，为人类史上推力最大火箭',
+      'NASA已选定星舰作为Artemis III载人登月任务的月面着陆器',
+      'IFT-1至IFT-5任务历经18个月，经历从爆炸到完全回收的完整技术演进'
+    ],
+    body: `<p>2024年10月13日，SpaceX在德克萨斯州博卡奇卡的星港（Starbase）发射场创造了人类航天史上的一个里程碑时刻：在星舰第五次综合飞行测试（IFT-5）中，"机甲哥斯拉"（Mechazilla）发射塔上的巨型机械臂——俗称"筷子臂"（Chopstick Arms）——首次在空中成功捕获了返回的超重型助推器（Super Heavy Booster）。这一场景被全球数百万名网友直播见证，被航天爱好者誉为"20年来最激动人心的工程壮举"。</p>
+    <div class="pq"><p>"这一刻我相信，我们正在通往多行星文明的道路上。今天的捕获意味着完全可复用的星际飞船成为可能。"</p><cite>— SpaceX创始人兼首席执行官 Elon Musk，IFT-5任务后发布推文</cite></div>
+    <p>要理解这次捕获的意义，需要回顾星舰的研发历程。IFT-1（2023年4月）任务中，星舰在升空约4分钟后因发动机故障触发自毁程序；IFT-2（2023年11月）实现了一二级分离，但两级均在大气层中解体；IFT-3（2024年3月）首次完成全程飞行剖面，星舰完成再入并在印度洋预定海域溅落；IFT-4（2024年6月）两级均完整存活至预定溅落区，这是全流程回收技术的关键验证步骤。IFT-5的筷子臂捕获，则标志着SpaceX的"快速复用"核心战略得到全面验证。</p>
+    <p>对于NASA而言，星舰的成熟至关重要。美国国家航空航天局已于2021年选定星舰作为Artemis III载人登月任务的月面着陆器（HLS），这是阿波罗计划结束50余年后人类首次重返月球的关键运载工具。尽管Artemis计划因多重技术因素历经多次延期，星舰技术的持续成熟被视为稳定任务节点的核心因素。在星际任务层面，SpaceX的火星殖民愿景正在逐步从科幻走向工程现实。</p>`,
+    related: ['leo-satellite','fusion','solid-battery']
+  },
+
+  'crispr': {
+    title: 'FDA批准全球首款CRISPR基因编辑疗法Casgevy，镰刀型细胞贫血症患者迎来历史性治愈时刻',
+    subtitle: '由Vertex与CRISPR Therapeutics联合研发的Casgevy于2023年12月8日获FDA批准，标志基因编辑从实验室正式走入临床。',
+    category: '生命科学', catPage: 'keji.html', catNav: 0,
+    author: '张晓雯', role: '科学编辑', date: '2026年2月20日', readTime: '8',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#7c2d12,#1a0a00)', letter:'🧬' },
+    tags: ['CRISPR','基因编辑','FDA','Casgevy','镰刀型细胞贫血症','生命科学'],
+    keyPoints: [
+      '2023年12月8日，FDA批准Casgevy——人类历史上第一款CRISPR基因编辑疗法',
+      '适应症为镰刀型细胞贫血症（SCD）及输血依赖性β地中海贫血（TDT）',
+      '通过编辑BCL11A基因重新激活胎儿血红蛋白，实现功能性治愈',
+      'Prime Editing技术精度进一步提升，单碱基错误率已降至百万分之一以下'
+    ],
+    body: `<p>2023年12月8日，美国食品药品监督管理局（FDA）正式批准了Casgevy（通用名：exagamglogene autotemcel，简称exa-cel），这是人类历史上第一款获得监管机构批准的CRISPR基因编辑疗法。Casgevy由Vertex制药与CRISPR Therapeutics联合研发，适应症为镰刀型细胞贫血症（SCD）以及输血依赖性β地中海贫血（TDT），这两种遗传性血液病此前只能通过骨髓移植进行治疗，且骨髓配型的高度匹配要求使大多数患者无缘此路。</p>
+    <div class="pq"><p>"今天是CRISPR基因编辑技术历经十年实验室研究后，正式走入临床现实的历史性时刻。"</p><cite>— CRISPR Therapeutics联合创始人 Emmanuelle Charpentier（2020年诺贝尔化学奖得主）</cite></div>
+    <p>Casgevy的作用机制相当精妙：它通过CRISPR-Cas9系统编辑患者自身造血干细胞中的BCL11A基因，关闭其对胎儿血红蛋白（HbF）的抑制，从而重新激活HbF的表达。胎儿血红蛋白在功能上可以补偿患者因基因缺陷而无法正常合成的成人血红蛋白，使红细胞恢复携氧能力。在关键临床试验中，29名接受治疗的镰刀型细胞贫血症患者中，有28名在至少一年的随访期内完全消除了血管闭塞性疼痛危机。这是一项接近"功能性治愈"的临床结果。</p>
+    <p>在Casgevy之后，基因编辑领域的下一个技术前沿是David Liu实验室（哈佛/布罗德研究所）开发的Prime Editing技术。与传统CRISPR-Cas9相比，Prime Editing无需制造双链DNA断裂，可以对基因组进行更精确的"搜索并替换"式编辑，理论上能够修正人类已知的约89%的致病性点突变。最新研究数据显示，Prime Editing的脱靶编辑率已降至百万分之一以下，进一步为其进入临床提供了安全性保障。基因编辑治疗的新纪元，已经正式开始。</p>`,
+    related: ['alphafold','gpt6','fusion']
+  },
+
+  'fusion': {
+    title: '核聚变点火成功：NIF实验室创造历史，私营聚变企业融资热潮席卷全球',
+    subtitle: '美国国家点火设施（NIF）于2022年12月首次实现聚变净能量增益，Commonwealth Fusion Systems紧随其后宣布超导磁铁技术突破。',
+    category: '能源科技', catPage: 'keji.html', catNav: 0,
+    author: '李明远', role: '能源编辑', date: '2026年2月18日', readTime: '7',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#0369a1,#0a0a2e)', letter:'⚛️' },
+    tags: ['核聚变','NIF','Commonwealth Fusion','SPARC','清洁能源','ITER'],
+    keyPoints: [
+      '2022年12月5日，NIF首次实现聚变净能量增益：3.15MJ输出 vs 2.05MJ激光输入',
+      'Commonwealth Fusion Systems（CFS）展示20特斯拉高温超导磁铁，SPARC托卡马克项目推进',
+      '全球私营聚变投资至2024年已超过60亿美元，Helion、TAE、General Fusion等企业竞相布局',
+      'ITER国际热核实验堆预计2033年实现首次等离子体，35国联合参与'
+    ],
+    body: `<p>2022年12月5日，位于美国加利福尼亚州利弗莫尔的国家点火设施（NIF）实现了人类历史上第一次聚变净能量增益：向靶丸输送的激光能量为2.05兆焦，而聚变反应释放的能量达到3.15兆焦，增益比约为1.54倍。尽管这一数字相比商业化所需的能量增益仍相距甚远（工程师通常需要数十至数百倍的增益才具备商业意义），但物理学意义上的"点火"（ignition）被证明是可能的，这打破了困扰聚变研究数十年的最核心疑问。</p>
+    <div class="pq"><p>"今天，我们第一次在实验室中点燃了一颗微型恒星。这是科学的历史性时刻。"</p><cite>— 美国能源部部长 Jennifer Granholm，于NIF点火成功宣布会上发言</cite></div>
+    <p>与此同时，私营聚变企业的技术进展同样引人瞩目。Commonwealth Fusion Systems（CFS）由MIT核科学与工程系教授Dennis Whyte创立，该公司于2021年9月成功演示了其自主研发的20特斯拉高温超导（HTS）磁铁，这是同类设备中磁场强度的世界纪录。更强的磁场意味着可以用更小的装置约束更高密度的等离子体，CFS据此设计的紧凑型托卡马克SPARC，其体积仅为国际热核实验堆（ITER）的约1/65，但预计能实现两倍以上的能量增益。CFS已获得超过18亿美元融资，并已为其商业聚变电厂ARC启动厂址选择程序。</p>
+    <p>全球私营聚变投资在2023至2024年间出现了显著加速：Helion Energy获得了Sam Altman领投的5亿美元融资，并与微软签署了全球首份聚变电力购买协议；TAE Technologies、General Fusion、Zap Energy等企业亦相继完成大额融资轮次。在政府层面，已有35个国家参与的ITER项目持续推进，预计2033年实现首次等离子体。核聚变从"永远差50年"的物理梦想，正在一步步接近工程现实。</p>`,
+    related: ['solid-battery','spacex','tsmc']
+  },
+
+  'figure': {
+    title: 'Figure AI人形机器人进驻宝马工厂，获微软、OpenAI、英伟达6.75亿美元联合投资',
+    subtitle: 'Figure 01成为全球首款在汽车制造工厂实际作业的人形机器人，Figure 02同年发布，灵巧度提升3倍。',
+    category: '机器人', catPage: 'keji.html', catNav: 0,
+    author: '陈思远', role: 'AI编辑', date: '2026年2月17日', readTime: '6',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#881337,#1a0a00)', letter:'🤖' },
+    tags: ['Figure AI','人形机器人','宝马','OpenAI','具身智能','制造业'],
+    keyPoints: [
+      'Figure AI与宝马制造公司签署协议，Figure 01正式在美国斯巴达堡工厂执行任务',
+      '2024年3月完成6.75亿美元融资：投资方包括微软、OpenAI、英伟达、Jeff Bezos',
+      'Figure 02（2024年8月发布）灵巧操作速度提升3倍，配备触觉传感器手部与6个RGB摄像头',
+      '特斯拉Optimus Gen 2、波士顿动力Atlas电气版同年相继推出，具身AI赛道全面竞争'
+    ],
+    body: `<p>2024年3月，Figure AI与宝马制造公司（BMW Manufacturing）正式宣布合作协议，Figure 01人形机器人将被部署于宝马位于美国南卡罗来纳州斯巴达堡（Spartanburg）的整车工厂，执行包括零件搬运、工位辅助等在内的制造任务。这是人形机器人首次在全球最复杂的工业环境之一——汽车整车制造流水线上——执行真实生产任务，被业界视为具身智能从实验室走向商业现实的标志性时刻。</p>
+    <div class="pq"><p>"我们不是在做一个玩具，也不是在做一个展览品。Figure 01现在正在宝马工厂里搬箱子、做事情。这才是具身AI的真实起点。"</p><cite>— Figure AI创始人兼首席执行官 Brett Adcock</cite></div>
+    <p>同月，Figure AI宣布完成6.75亿美元的融资轮，估值升至26亿美元。此轮融资的投资阵容堪称豪华：微软、OpenAI、英伟达、英特尔资本以及亚马逊创始人Jeff Bezos均参与其中。值得注意的是，OpenAI与Figure AI同时签署了一份独立合作协议，由OpenAI为Figure机器人开发专用的神经网络认知系统，使机器人能够以自然语言指令理解并执行复杂任务。</p>
+    <p>2024年8月，Figure AI发布了第二代产品Figure 02：其灵巧操作速度比Figure 01提升约3倍，全新手部设计集成了触觉传感器，能够感知抓握力度并实时调整，6个RGB摄像头覆盖全身360度视野。与此同时，特斯拉发布了Optimus Gen 2的演示视频（能够精准处理鸡蛋等易碎物品），波士顿动力则宣布停产液压版Atlas、推出全电气化新版本，中国的宇树科技（Unitree）也以更低价格推出G1人形机器人，全球具身智能赛道进入全面竞争的新阶段。</p>`,
+    related: ['gpt6','alphafold','china-chip']
+  },
+
+  'quantum-race': {
+    title: '量子霸权之争：谷歌Sycamore、中国九章、IBM Condor——全球量子竞赛现状全景扫描',
+    subtitle: '从2019年谷歌宣称"量子霸权"，到2023年IBM突破千量子比特，再到中国九章3.0的光子路线，量子计算的全球竞争格局正在深刻演变。',
+    category: '量子计算', catPage: 'quantum.html', catNav: 2,
+    author: '林晨曦', role: '量子计算编辑', date: '2026年2月15日', readTime: '10',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#0a0a2e,#1e3a5f)', letter:'Q' },
+    tags: ['量子霸权','Google','IBM','中国量子','九章','祖冲之'],
+    keyPoints: [
+      '2019年谷歌Sycamore（53量子比特）宣布"量子优越性"，IBM提出质疑',
+      '中国九章（2020）光子路线、祖冲之（2021）超导路线均声称特定任务优越性',
+      'IBM 2023年发布1121量子比特Condor，量子比特数量不再是唯一指标',
+      '2024年谷歌Willow芯片实现量子纠错低于物理阈值，被视为真正的里程碑'
+    ],
+    body: `<p>2019年10月，谷歌在《Nature》杂志发表论文，宣称其53量子比特的Sycamore处理器在约200秒内完成了一项特定的随机电路采样任务，而当时最强大的经典超级计算机需要约1万年才能完成同样任务。这一宣告被冠以"量子优越性"（Quantum Supremacy）的名号，震动了全球科技界。然而，IBM研究团队随即发文反驳，指出通过优化算法，经典超算实际上可以在2.5天内完成同一任务——"量子优越性"的边界，远比谷歌宣称的更加模糊。</p>
+    <div class="pq"><p>"量子优越性不是一个开关，而是一条逐渐移动的边界线。真正的问题是：什么时候量子系统能解决经典系统永远解决不了的实际问题？"</p><cite>— IBM量子计算总裁 Jay Gambetta</cite></div>
+    <p>在中国方面，中国科学技术大学潘建伟团队于2020年发表了光子量子计算系统"九章"的研究成果：这台系统在高斯玻色采样（Gaussian Boson Sampling）任务上的运算速度，比当时最快的经典超算快约100万亿倍。2021年，九章2.0将光子数提升至113个，同年，超导路线的"祖冲之2.0"（66量子比特）在随机线路采样任务上声称相较谷歌Sycamore的百万倍优越性。九章3.0（2023年）进一步将光子数提升至255个，在玻色采样任务速度上再创纪录。</p>
+    <p>IBM则选择了不同的竞争维度。2023年底发布的Condor处理器达到1121量子比特，创量子比特数量纪录；但IBM同时强调，量子比特数量并非衡量量子计算机能力的唯一甚至主要指标——量子比特的质量（错误率、相干时间）比数量更关键。2024年12月，谷歌宣布其Willow芯片实现了一个关键里程碑：随着量子比特数量增加，系统错误率实现了"低于物理阈值"的量子纠错，这意味着增加量子比特反而会减少错误，被多位专家视为迄今为止最具意义的量子进步。</p>`,
+    related: ['tsmc','gpt6','china-chip']
+  },
+
+  'china-chip': {
+    title: '华为Mate 60 Pro震惊西方：SMIC突破7nm工艺，中国芯片自主化进程加速',
+    subtitle: '2023年8月无预告上市的Mate 60 Pro搭载麒麟9000S芯片，证明中国在出口管制压力下已实现7nm制程量产，引发全球半导体产业链重估。',
+    category: '芯片', catPage: 'keji.html', catNav: 0,
+    author: '王俊凯', role: '产业编辑', date: '2026年2月13日', readTime: '8',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#b45309,#1a0a00)', letter:'芯' },
+    tags: ['华为','SMIC','7nm','麒麟9000S','中国芯片','出口管制'],
+    keyPoints: [
+      '华为Mate 60 Pro（2023年8月）搭载SMIC N+2工艺麒麟9000S，等效7nm制程',
+      '在无EUV光刻机的条件下，SMIC通过DUV多重曝光技术实现7nm量产',
+      '美国2022年、2023年两轮出口管制已限制先进芯片设备与技术向中国出口',
+      '长江存储（YMTC）232层NAND闪存、长鑫存储（CXMT）DDR5相继量产'
+    ],
+    body: `<p>2023年8月29日，华为在没有任何预告的情况下悄然上架了Mate 60 Pro智能手机。这款手机最初并未引起特别关注，直到科技分析机构TechInsights对其拆机分析后发现：Mate 60 Pro搭载的麒麟9000S处理器，由中芯国际（SMIC）采用其N+2工艺节点制造，芯片密度相当于7nm等效制程。这一发现在半导体产业界和地缘政治分析圈引发了轩然大波——因为美国政府此前的出口管制逻辑，正是建立在"封锁先进制程设备可有效阻止中国芯片进步"的假设之上。</p>
+    <div class="pq"><p>"这是2023年半导体领域最大的技术惊喜。它改变了很多人对出口管制有效性的基本判断。"</p><cite>— 半导体产业分析师 Dan Hutcheson（TechInsights副主席）</cite></div>
+    <p>SMIC的突破之所以令外界意外，在于其在没有荷兰ASML极紫外（EUV）光刻机的情况下，通过对深紫外（DUV）浸没式光刻机进行多重曝光（multi-patterning）工艺叠加，实现了7nm等效制程的量产。这一路线良率较低、成本较高，但其存在本身证明了技术封锁并非无懈可击。麒麟9000S采用台积电4nm芯片同时代的性能，但在功耗效率上仍有差距，折射出没有最先进工艺节点的真实代价。</p>
+    <p>与此同时，中国存储芯片领域也在悄然崛起。长江存储（YMTC）于2022至2023年间推出了232层3D NAND闪存，其技术水准已进入全球第一梯队，并被苹果短暂考虑用于iPhone（后因美国政府施压放弃）。长鑫存储（CXMT）的DDR5内存芯片也在2024年开始规模出货。然而，分析人士普遍指出，在无法获得EUV光刻机的情况下，中国芯片产业在5nm以下制程节点的突破将面临极大物理工程障碍，这一瓶颈短期内难以通过工艺创新完全规避。</p>`,
+    related: ['tsmc','quantum-race','leo-satellite']
+  },
+
+  'alphafold': {
+    title: 'AlphaFold 3发布：预测范围从蛋白质扩展至DNA、RNA与小分子，诺贝尔奖桂冠随即颁出',
+    subtitle: 'Google DeepMind于2024年5月在《Nature》发表AlphaFold 3，将结构预测能力扩展至所有生物分子；同年诺贝尔化学奖授予蛋白质结构预测领域。',
+    category: '生命科学', catPage: 'keji.html', catNav: 0,
+    author: '张晓雯', role: '科学编辑', date: '2026年2月11日', readTime: '7',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#14532d,#0a1a0a)', letter:'🔬' },
+    tags: ['AlphaFold','DeepMind','蛋白质结构','诺贝尔奖','药物研发','生命科学'],
+    keyPoints: [
+      'AlphaFold 3于2024年5月8日在《Nature》发表，预测范围覆盖蛋白质、DNA、RNA及小分子相互作用',
+      '2024年诺贝尔化学奖授予Demis Hassabis、John Jumper（DeepMind）及David Baker（华盛顿大学）',
+      'AlphaFold蛋白质数据库已收录逾2亿种蛋白质的预测结构，几乎覆盖所有已知蛋白',
+      'Isomorphic Labs（Google旗下）利用AlphaFold 3加速药物靶点发现，多个项目已进入临床'
+    ],
+    body: `<p>2024年5月8日，Google DeepMind在《Nature》杂志发表了AlphaFold 3，这是继2020年AlphaFold 2解决蛋白质折叠问题之后，生物信息学领域最重要的一次技术飞跃。AlphaFold 3的核心突破在于：其预测能力不再局限于单一蛋白质的三维结构，而是扩展至蛋白质与DNA、RNA、小分子配体（即潜在药物分子）之间的相互作用结构。这一能力的提升，对于药物研发领域具有革命性意义——理解蛋白质如何与药物分子结合，是新药设计的核心问题之一。</p>
+    <div class="pq"><p>"AlphaFold改变了生物学的研究方式。在它出现之前，解析一个蛋白质结构可能需要数年；现在，所有已知蛋白质的结构都可以在几秒内预测。"</p><cite>— 诺贝尔化学奖委员会颁奖词（2024年）</cite></div>
+    <p>AlphaFold 3的技术架构较前代发生了根本性变化：其核心采用扩散模型（Diffusion Model）而非前代的Evoformer架构，能够对不同类型生物分子的原子坐标进行联合预测。在蛋白质-配体相互作用的预测精度上，AlphaFold 3比现有最优方法提升约50%，在蛋白质-核酸复合物的结构预测上同样表现突出。2024年10月，瑞典皇家科学院将诺贝尔化学奖授予DeepMind的Demis Hassabis与John Jumper，以及华盛顿大学的David Baker——后者因利用AI进行蛋白质从头设计（de novo design）而同获此奖。</p>
+    <p>在产业应用层面，Google旗下的Isomorphic Labs正在利用AlphaFold 3与自研模型加速多个药物发现项目，据报道已有靶向癌症与神经退行性疾病的候选化合物进入早期临床阶段。然而，学术界对DeepMind在开放性方面的限制提出了批评：AlphaFold 3虽提供在线服务器供研究人员使用，但其模型权重与完整代码并未像AlphaFold 2那样完全开放，引发了关于商业利益与开放科学之间张力的讨论。</p>`,
+    related: ['crispr','gpt6','figure']
+  },
+
+  'leo-satellite': {
+    title: 'Starlink卫星数突破6000颗，用户超300万：低轨卫星互联网改变全球数字鸿沟格局',
+    subtitle: 'SpaceX星链网络全球覆盖超100国，亚马逊Kuiper、中国国网卫星相继推进，卫星互联网进入多极竞争时代。',
+    category: '通信', catPage: 'keji.html', catNav: 0,
+    author: '刘星宇', role: '科学编辑', date: '2026年2月9日', readTime: '6',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#1e3a5f,#0a0a2e)', letter:'🛰️' },
+    tags: ['Starlink','低轨卫星','SpaceX','Amazon Kuiper','卫星互联网','数字鸿沟'],
+    keyPoints: [
+      'SpaceX Starlink在轨卫星已超过6000颗，全球用户超300万，覆盖100+国家',
+      '延迟低至20-40ms（地球静止轨道卫星约600ms），已接近地面宽带体验',
+      '亚马逊Kuiper于2023年10月发射首批原型卫星，计划部署3236颗',
+      'Starlink直连手机（Direct to Cell）服务启动，无需专用设备即可通过普通手机访问卫星网络'
+    ],
+    body: `<p>SpaceX旗下的星链（Starlink）卫星互联网项目已成为人类历史上建设最快的通信基础设施之一。截至2024年底，Starlink在轨运行卫星已超过6000颗，覆盖全球100余个国家和地区，订阅用户突破300万。与传统地球静止轨道（GEO）卫星相比，低轨（LEO）卫星距地约550公里，信号往返延迟仅约20至40毫秒，已接近地面光纤宽带的使用体验，这使Starlink真正实现了对偏远地区、海洋航线及航空场景的高质量互联网接入。</p>
+    <div class="pq"><p>"在乌克兰战争中，Starlink终端成为了最重要的通信基础设施。它改变了军事通信、指挥协调的规则。"</p><cite>— 美国国防高级研究计划局（DARPA）2023年报告</cite></div>
+    <p>在竞争格局方面，亚马逊的柯伊伯（Project Kuiper）项目已于2023年10月发射了两颗原型卫星（KuiperSat-1和KuiperSat-2），验证了关键技术后，亚马逊计划在2024至2025年间开始批量发射，最终部署3236颗卫星，形成完整星座。亚马逊已获得FCC的频谱与轨道许可，并承诺总投资超过100亿美元。与此同时，OneWeb（已与欧洲电信卫星公司Eutelsat合并）的634颗低轨卫星也已完成部署，主攻企业级和政府客户市场。</p>
+    <p>在技术前沿，SpaceX于2024年正式启动"Direct to Cell"（直连手机）服务，允许普通消费级智能手机（无需专用天线）在没有地面信号的区域直接接入Starlink卫星网络。首期服务覆盖短信与基础数据，语音与高速数据接入预计随后推出，多家美国电信运营商已宣布与SpaceX合作。在中国，"国网"（Guowang）低轨卫星星座计划已在推进中，规划总数逾12000颗，这将使全球低轨卫星频谱资源的竞争进一步加剧。</p>`,
+    related: ['spacex','tsmc','china-chip']
+  },
+
+  'solid-battery': {
+    title: '固态电池产业化元年：丰田2027年量产计划确认，宁德时代凝聚态电池已送样航空客户',
+    subtitle: '固态电池因其高能量密度与不可燃特性被视为下一代动力电池的终极形态，全球主要车企与电池厂商正密集投入，商业化窗口已然开启。',
+    category: '能源科技', catPage: 'keji.html', catNav: 0,
+    author: '李明远', role: '能源编辑', date: '2026年2月7日', readTime: '7',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#713f12,#1a0a00)', letter:'⚡' },
+    tags: ['固态电池','丰田','宁德时代','QuantumScape','电动汽车','能源存储'],
+    keyPoints: [
+      '丰田计划2027至2028年实现固态电池量产，声称续航达1200km、充电时间约10分钟',
+      '宁德时代（CATL）凝聚态电池（半固态）能量密度达500Wh/kg，已送样航空客户',
+      'QuantumScape（大众合作方）完成单层固态电芯性能验证，多层扩展为当前核心挑战',
+      '固态电解质主要分为三类：氧化物（LLZO）、硫化物、聚合物，各有性能与制造优劣'
+    ],
+    body: `<p>固态电池被电动车产业普遍视为"圣杯技术"：相比传统液态锂离子电池，固态电池使用固体电解质取代易燃液态电解液，理论上能在大幅提升能量密度的同时彻底消除热失控风险。丰田是全球在固态电池领域专利储备最为丰厚的企业，其于2023年正式宣布将在2027至2028年间实现固态电池量产，目标车型的续航里程可达1200公里，充电时间约为10分钟，并且在-30°C至100°C的极端温度范围内均可稳定工作。丰田已与松下共同成立的Prime Planet and Energy & Solutions（PPES）主导固态电池的量产技术攻关。</p>
+    <div class="pq"><p>"固态电池不是'如果'的问题，而是'何时'的问题。我们认为2027年是现实的商业化目标。"</p><cite>— 丰田汽车技术总裁 中岛裕树（Hiroki Nakajima）</cite></div>
+    <p>在中国市场，宁德时代（CATL）于2023年4月发布了其"凝聚态电池"——这是一种介于液态和固态之间的半固态技术路线，能量密度达到500 Wh/kg，超过目前主流液态锂离子电池约300 Wh/kg的水准。宁德时代表示，该产品已向航空领域客户送样测试，目标应用包括电动飞机与高端消费级无人机，是首款正式进入航空预研阶段的国产高能量密度电池。</p>
+    <p>在全球固态电池初创企业中，QuantumScape（大众汽车主要投资方）是技术进展最受关注的公司之一。该公司已成功验证其氧化锂（LLZO）基固态单层电芯在数百次充放电循环后的性能稳定性，但从单层扩展至汽车实际应用所需的多层叠片结构，仍是当前最核心的工程难题。此外，三星SDI、Solid Power（宝马、福特投资）等企业亦在紧密追赶。业界普遍预期，固态电池将在2027至2030年间逐步从旗舰车型向更广泛市场渗透。</p>`,
+    related: ['fusion','spacex','tsmc']
+  },
+
+  /* ═══════════════ 地缘政治 ═══════════════ */
+  'geo-export-control': {
+    title: '美国商务部再扩芯片出口管制：量子计算关键设备与 AI 加速器双双列入限制清单',
+    subtitle: '拜登政府遗留的BIS出口管制框架与特朗普政府新规相互叠加，针对中国半导体技术获取的封锁进一步升级，中国企业与研究机构反应强烈。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '赵恒远', role: '地缘政治编辑', date: '2026年2月25日', readTime: '8',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#1e3a5f,#0f172a)', letter:'出口' },
+    tags: ['出口管制','BIS','美国商务部','芯片战','中美科技战','实体清单'],
+    keyPoints: [
+      '2023年10月BIS规则将H100/A100等高性能GPU纳入许可证要求，后续规则进一步收紧算力阈值',
+      '量子计算硬件（稀释制冷机、超导量子比特操控设备）被列入新增评估清单',
+      '中国140余家企业已被列入实体清单，影响其获取EUV/DUV光刻机及相关设备',
+      '荷兰ASML、日本东京电子等盟国已配合美国出口管制框架限制对华出口'
+    ],
+    body: `<p>2023年10月17日，美国商务部产业安全局（BIS）发布了迄今最全面的半导体出口管制新规，将NVIDIA H100、A100等高性能AI加速器及AMD MI300系列GPU纳入对华出口许可证要求范围，并将算力阈值大幅下调，使得此前因性能刚好低于管制线而合规出口的"降级版"芯片（如NVIDIA A800、H800）亦在新规下受到限制。这一举措被外界解读为美国在"科技围堵"战略上迈出的决定性一步。</p>
+    <div class="pq"><p>"我们的目标很清晰：防止这些技术被用于提升中国的军事能力、人工智能监控体系或大规模杀伤性武器的研发。"</p><cite>— 美国商务部长吉娜·雷蒙多（Gina Raimondo），2023年10月记者会</cite></div>
+    <p>在量子计算领域，BIS的新评估清单首次将用于量子计算系统的关键硬件纳入潜在管制范围，包括：用于超导量子比特冷却的稀释制冷机（Dilution Refrigerator）、量子比特操控所需的任意波形发生器（AWG）及微波组件，以及用于量子纠错的高速低噪放大器。这意味着中国量子计算研究机构在采购核心实验设备时将面临更严格的审查。</p>
+    <p>在盟国协调方面，荷兰政府已于2023年宣布对ASML的EUV及深紫外（DUV）光刻机实施出口许可证要求，日本政府亦将23类半导体制造设备纳入出口管制。这构成了美国主导的多边技术封锁联盟的关键节点。中国商务部则针对美国实体发布反制措施，对镓、锗等半导体关键原材料实施出口许可证管理，双方的技术脱钩进程正全面加速。</p>`,
+    related: ['geo-tech-coldwar','geo-eu-quantum','geo-india-quad']
+  },
+
+  'geo-eu-quantum': {
+    title: '欧盟量子旗舰计划扩容：2026—2030年追加投入，目标建立独立量子通信基础设施',
+    subtitle: '面对中美量子竞赛白热化，欧盟加速推进"战略自主"量子路线图，重点布局量子密钥分发网络与后量子密码学标准化工作。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '吴晓峰', role: '欧洲事务编辑', date: '2026年2月24日', readTime: '6',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#14532d,#052e16)', letter:'EU' },
+    tags: ['欧盟','量子旗舰','战略自主','QKD','后量子密码','欧洲'],
+    keyPoints: [
+      '欧盟量子旗舰（Quantum Flagship）2018年启动，初始预算10亿欧元、为期10年',
+      '欧洲量子通信基础设施（EuroQCI）计划在EU成员国间建立覆盖全境的量子密钥分发网络',
+      '欧盟正推动本土量子芯片制造能力，减少对美国与亚洲供应链依赖',
+      'ETSI、ENISA已分别就后量子密码标准化与量子安全迁移发布指导框架'
+    ],
+    body: `<p>欧盟量子旗舰（EU Quantum Flagship）计划于2018年正式启动，作为欧洲科研与创新框架计划（Horizon Europe）的重大战略旗舰项目之一，初始总预算约10亿欧元，计划周期为十年。该计划覆盖量子通信、量子计算、量子传感与量子模拟四大支柱领域，汇聚了来自欧盟成员国的逾5000名研究人员与工程师。欧盟委员会将量子技术定位为维护欧洲"技术主权"的核心战略资产之一。</p>
+    <div class="pq"><p>"量子技术将重新定义欧洲的工业竞争力与战略安全。欧盟不能在这一领域依赖他人，我们必须自主掌握核心技术。"</p><cite>— 欧盟委员会执行副主席玛格丽特·韦斯塔格（Margrethe Vestager）</cite></div>
+    <p>在量子通信领域，欧洲量子通信基础设施（EuroQCI）计划是欧盟战略布局的重中之重。该计划旨在通过量子密钥分发（QKD）技术，在欧盟27个成员国之间建立一套与传统互联网互补、但在物理层面具备不可破解特性的安全通信网络。EuroQCI将融合地面光纤网络与卫星链路（依托Copernicus及IRIS²卫星计划），最终构成覆盖欧洲大陆的"量子安全通信骨干网"。</p>
+    <p>在标准化领域，欧洲电信标准化协会（ETSI）量子密码工作组（QKD ISG）已发布多项关于QKD系统规范与接口标准的技术报告，欧盟网络安全局（ENISA）亦于2023年发布了面向企业和政府机构的"后量子密码迁移实践指南"。值得注意的是，NIST于2024年8月正式发布的后量子密码标准（CRYSTALS-Kyber/ML-KEM、CRYSTALS-Dilithium/ML-DSA等），已被欧洲多国政府机构采纳为迁移参考基准。欧盟在量子生态系统中的战略意图越来越清晰：既不完全依附于美国主导的技术体系，也谋求与中国保持接触而非完全对抗。</p>`,
+    related: ['geo-export-control','geo-pqc-migration','geo-g7']
+  },
+
+  'geo-g7': {
+    title: 'G7广岛峰会后续：量子安全议题进入盟国最高级别协调议程，加密互信重建提速',
+    subtitle: 'G7成员国技术安全工作组在日本广岛峰会框架下持续推进量子威胁协调应对，NATO量子战略文件草案同步流出，盟国体系面临一次加密基础设施的整体性更新。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '林晨曦', role: '外交编辑', date: '2026年2月23日', readTime: '7',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#7c2d12,#431407)', letter:'G7' },
+    tags: ['G7','NATO','量子安全','盟国协调','后量子密码','广岛峰会'],
+    keyPoints: [
+      '2023年广岛峰会G7领导人声明明确将量子技术列为关键新兴技术协调优先领域',
+      'NATO已成立量子技术工作组，评估成员国加密基础设施向后量子标准迁移的优先路径',
+      'G7"技术民主"议程涵盖量子安全通信互操作性标准、供应链审查与研究人员流动规范',
+      '美英澳三国已启动AUKUS量子加速器计划，专注于水下与太空量子传感应用'
+    ],
+    body: `<p>2023年5月在日本广岛举行的G7峰会，首次将量子技术明确列入"关键与新兴技术"（CET）协调框架的优先议题清单。G7领导人峰会公报中专门设立了"技术与民主"章节，要求七国建立更紧密的量子技术信息共享机制，并在后量子密码学（PQC）迁移标准、量子传感出口管制以及量子计算研究安全等领域开展政策协调。这是量子议题首次以如此高规格出现在G7最终公报文本中。</p>
+    <div class="pq"><p>"我们七国政府深刻认识到，量子技术将从根本上改变通信安全的基础假设。在盟国内部建立量子安全互信，是维护集体防御能力的前提条件。"</p><cite>— G7广岛峰会联合声明，2023年5月</cite></div>
+    <p>在NATO框架下，北约科学技术组织（STO）已成立专项量子技术工作组，系统评估成员国的量子准备状态（Quantum Readiness）。根据NATO自身的评估，其通信系统中大量依赖RSA和椭圆曲线密码学（ECC）的加密模块面临量子威胁，全面迁移至后量子标准预计需要约十年时间与数十亿美元的基础设施投资。NATO的量子迁移路线图被视为目前最复杂的政府级加密升级工程之一。</p>
+    <p>值得关注的是，AUKUS（美英澳三边安全伙伴关系）在2023年宣布扩展"第二支柱"合作，新增量子技术作为八大优先领域之一，重点聚焦于量子传感在水下探测（反潜战）与太空态势感知中的应用。该计划被分析人士视为三国在量子军事应用领域开展的深度技术共享实验，也是西方民主国家在量子议题上最具实质内容的多边合作之一。</p>`,
+    related: ['geo-eu-quantum','geo-india-quad','geo-fbi-quantum']
+  },
+
+  'geo-india-quad': {
+    title: '印度国家量子任务正式落地：7300亿卢比预算确认，美印iCET协议开启量子技术共享',
+    subtitle: '印度以其庞大的人才储备与战略位置成为"技术民主"阵营的关键新成员，四方安全对话（Quad）在量子领域迈出首个实质性合作步伐。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '赵恒远', role: '印太事务编辑', date: '2026年2月21日', readTime: '6',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#1e40af,#1e3a8a)', letter:'印度' },
+    tags: ['印度','Quad','iCET','国家量子任务','印太','技术民主'],
+    keyPoints: [
+      '印度内阁2023年4月批准国家量子任务（NQM），预算6003亿卢比（约7.3亿美元），周期2023—2031年',
+      '美印关键与新兴技术倡议（iCET）2023年6月正式签署，量子技术列入核心合作清单',
+      '印度目标：2031年前建造50-1000量子比特量子计算机，并部署量子通信网络',
+      '印度理工学院与美国MIT、Caltech建立联合量子研究中心，人才培养加速'
+    ],
+    body: `<p>2023年4月19日，印度内阁正式批准"国家量子任务"（National Quantum Mission，NQM），批准总预算为6003亿卢比（折合约7.3亿美元），计划实施周期为2023至2031年。这是印度历史上在量子科技领域规模最大的政府专项投资，覆盖量子计算、量子通信、量子传感与量子材料四大研究方向。印度科学技术部（DST）负责统筹推进，旗下将设立多个任务主导中心（Mission Thematic Hubs，M-THUBs），依托印度理工学院（IIT）体系和印度科学院（IISc）实施。</p>
+    <div class="pq"><p>"量子技术将是21世纪技术主权竞争的核心战场。印度必须在量子计算、量子通信和量子传感三大领域建立自主能力，这不仅是科技问题，更是国家安全问题。"</p><cite>— 印度科学技术部长乔伊提拉迪亚（Jitendra Singh）</cite></div>
+    <p>在国际合作层面，2023年6月莫迪总理访美期间，美印正式签署"关键与新兴技术倡议"（iCET）框架协议。量子技术与半导体、人工智能、先进电信并列为iCET四大核心合作领域。双方宣布建立量子协调机制，美国国家科学基金会（NSF）与印度科学技术部将共同资助联合研究项目，并推动两国大学间的量子研究人员交流计划。</p>
+    <p>在四方安全对话（Quad）框架内，量子技术合作也取得了实质进展。美日印澳四国成立了"量子技术工作组"，重点关注量子通信网络的互操作性标准制定，以及量子传感在印太地区海洋感知中的潜在应用。分析人士指出，印度的加入使"技术民主"量子联盟从地理上形成了闭合：北美（美国、加拿大）、欧洲（EU、英国）、东亚（日本、韩国）加上印度，构成了一个对中国量子技术出口形成系统性压力的多极协调体系。</p>`,
+    related: ['geo-g7','geo-export-control','geo-tech-coldwar']
+  },
+
+  'geo-fbi-quantum': {
+    title: 'NSA与CISA联合警告：量子计算机可能使现有公钥加密体系"即时失效"，政府机构被要求加速迁移',
+    subtitle: '美国国家安全局与网络安全和基础设施安全局联合发布量子风险咨询报告，要求国家安全系统（NSS）运营者制定明确的后量子密码迁移时间表。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '吴晓峰', role: '安全编辑', date: '2026年2月19日', readTime: '7',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#4a044e,#2e1065)', letter:'NSA' },
+    tags: ['NSA','CISA','量子安全','后量子密码','国家安全','情报'],
+    keyPoints: [
+      'NSA 2022年发布商业国家安全算法套件2.0（CNSA 2.0），要求NSS运营者2030年前完成迁移',
+      '公钥密码术（PKI、RSA、ECC）面临"先收割后解密"（Harvest Now, Decrypt Later）威胁',
+      '美国国防部已要求国防承包商在2025年底前提交量子安全准备状态评估报告',
+      'CISA《后量子密码学路线图》识别出16类联邦政府关键系统需优先迁移'
+    ],
+    body: `<p>2022年9月，美国国家安全局（NSA）发布了"商业国家安全算法套件2.0"（CNSA 2.0），正式宣布将逐步淘汰包括RSA、椭圆曲线Diffie-Hellman（ECDH）在内的传统公钥密码算法，要求所有运营国家安全系统（NSS）的政府机构和国防承包商在2030至2033年间完成向后量子密码标准的全面迁移。这是美国政府机构首次为后量子密码迁移设定具有约束力的时间表。</p>
+    <div class="pq"><p>"我们不是在应对一个遥远的假设威胁。对手正在今天大量存储加密通信，等待量子解密能力成熟的那一天。对于涉密数据而言，那一天就是'保密期终结日'。"</p><cite>— 美国网络安全和基础设施安全局（CISA），量子风险咨询报告，2023年</cite></div>
+    <p>安全界最为警惕的威胁模式被称为"先收割后解密"（Harvest Now, Decrypt Later，HNDL）：即使量子计算机今天还无法破解RSA加密，对手仍可大规模截获并存储当前的加密通信数据，等到未来量子计算机成熟后再行解密。这对于机密通信、外交电报、军事指令等具有长期保密价值的数据构成严重威胁。NSA官员在多个非公开场合表示，他们"有理由相信"某些国家级对手正在实施这一策略。</p>
+    <p>在具体行动层面，美国网络安全和基础设施安全局（CISA）于2023年发布了《后量子密码学路线图》，识别出联邦政府体系内16类关键系统需要优先完成后量子迁移，包括：政府通信网络（DISA）、金融监管基础设施（SWIFT接口）、电力网络控制系统（SCADA/ICS）及国防供应链管理系统。美国国防部亦于同年发布指令，要求所有主要国防承包商（包括洛克希德·马丁、雷神、波音等）在2025年底前提交量子安全准备状态评估报告（QRRA）。</p>`,
+    related: ['geo-g7','geo-pqc-migration','geo-eu-quantum']
+  },
+
+  'geo-un-quantum': {
+    title: '联合国科技峰会：多国提议建立量子技术透明度机制，参照核不扩散条约模式',
+    subtitle: '在联合国技术促进发展峰会上，欧盟、加拿大及多个非洲国家联合提出量子能力申报框架草案，中美反应截然不同，国际量子治理博弈已然展开。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '赵恒远', role: '国际事务编辑', date: '2026年2月17日', readTime: '6',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#713f12,#431407)', letter:'UN' },
+    tags: ['联合国','量子治理','核不扩散','透明度','多边主义','国际规范'],
+    keyPoints: [
+      '类比《不扩散核武器条约》（NPT），部分国家提议建立量子能力申报与核查机制',
+      '联合国全球数字契约（GDC）2024年通过，量子技术被列入需国际治理的新兴技术',
+      '欧盟主张通过IAEA模式进行多边核查；美国倾向于盟国小多边框架；中国强调主权权利',
+      '发展中国家担忧量子技术鸿沟固化，呼吁建立能力建设与技术转让机制'
+    ],
+    body: `<p>联合国于2024年9月通过的《全球数字契约》（Global Digital Compact，GDC）将人工智能、量子计算与生物技术并列为需要国际社会共同治理的"高风险新兴技术"，这标志着量子技术议题首次进入联合国正式法律文书框架。在此背景下，欧盟、加拿大、荷兰及非洲联盟相关国家在联合国技术促进可持续发展峰会上联合提交了一份"量子技术透明度机制"（Quantum Transparency Mechanism，QTM）概念草案。</p>
+    <div class="pq"><p>"我们不是要限制量子科学的发展，而是要建立一套国际社会能够共同理解、共同核查量子能力的基础框架，防止这一技术在不透明的状态下引发战略误判。"</p><cite>— 欧盟驻联合国大使在GDC配套会议上的发言</cite></div>
+    <p>QTM草案的核心设想是：参照国际原子能机构（IAEA）对核设施的申报与检查模式，要求各国向一个独立国际机构申报其量子计算机的技术参数（量子比特数量、相干时间、纠错能力等），并允许独立技术专家组进行有限度的核查访问。草案明确排除军事用途量子传感器的申报要求，但对可用于破解现行加密体系的"密码相关量子计算机"（CRQC）设定了申报门槛。</p>
+    <p>各方反应呈现明显分歧。欧盟整体支持该框架，视之为其"科技多边主义"外交政策的自然延伸；美国表示"原则性支持透明度理念，但对核查机制的可操作性持保留意见"，实际立场偏向在G7与AUKUS等小多边框架内协调；中国则明确表示任何量子能力核查机制都"触及国家主权核心利益"，不接受外部机构对国内研究设施的访问要求。发展中国家的关注点则不同：他们更担心量子技术将进一步加剧南北数字鸿沟，因此呼吁在透明度机制之外同步设立"量子能力建设基金"和技术转让条款。</p>`,
+    related: ['geo-g7','geo-eu-quantum','geo-tech-coldwar']
+  },
+
+  'geo-tech-coldwar': {
+    title: '科技冷战十年演变：从华为禁令到芯片法案，中美技术脱钩的完整路线图',
+    subtitle: '2015年至今，中美技术竞争经历了从局部摩擦到系统性脱钩的深刻转变。本文梳理关键节点，评估脱钩的实际进度与两国科技界的代价。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '林晨曦', role: '深度报道编辑', date: '2026年2月10日', readTime: '12',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#1e3a5f,#0f172a)', letter:'冷战' },
+    tags: ['中美科技战','华为','CHIPS法案','实体清单','技术脱钩','半导体'],
+    keyPoints: [
+      '2018年：美国对中兴实施出口禁令，全球首次展示"芯片断供"作为地缘政治武器的效力',
+      '2019年：华为被列入实体清单，引发全球供应链重组，5G标准之争全面爆发',
+      '2022年：美国《芯片与科学法案》投入527亿美元补贴本土半导体制造，同年发布史上最严出口管制',
+      '2024年：NIST后量子密码标准发布，标志中美技术竞争正式进入量子与AI双赛道'
+    ],
+    body: `<p>如果说2018年是中美科技冷战的"元年"，那么导火索是一家名为中兴通讯（ZTE）的中国电信设备商。2018年4月，美国商务部以中兴违反制裁伊朗和朝鲜的协议为由，宣布对其实施7年出口禁令，禁止美国企业向中兴出售芯片、软件及技术服务。中兴约25%—30%的核心芯片来自美国供应商（高通、德州仪器、英特尔），这一断供几乎令其立即停摆。这次事件第一次向全球展示了"芯片断供"作为地缘政治武器的实际效果。</p>
+    <div class="pq"><p>"华为案件从根本上改变了全球科技公司对供应链风险的认知。没有哪家依赖美国技术的公司可以声称自己对政治风险免疫。"</p><cite>— 半导体行业分析师，路透社，2021年</cite></div>
+    <p>2019年5月，华为被列入美国商务部实体清单（Entity List），要求所有向华为出售受"出口管理条例"（EAR）约束产品的企业必须申请许可证。由于EAR管辖范围涵盖"任何含有美国技术成分超过25%"的产品，这一规则实际上在全球层面切断了华为从高通（处理器）、ARM（芯片架构授权）、谷歌（Android及GMS服务）的主要技术来源。2020年进一步收紧的"外国直接产品规则"（FDPR）将管辖阈值降低至"任何使用美国设备或软件设计的产品"，台积电、三星等代工厂随之停止为华为生产先进制程芯片。</p>
+    <p>2022年，《芯片与科学法案》（CHIPS and Science Act）以两党罕见共识在美国国会高票通过，授权527亿美元补贴美国本土半导体制造，并在法案中明确设立"护栏条款"——禁止任何接受补贴的企业在未来10年内在中国扩大先进制程芯片产能。同年10月的BIS出口管制新规，则将美国半导体技术围堵的逻辑从"针对特定企业"升级为"针对整个中国先进芯片产业"。2024年NIST后量子密码标准的正式发布，则标志着这场技术竞争已从半导体硬件延伸至加密软件标准层面，进入了一个更深、更难逆转的新阶段。</p>`,
+    related: ['geo-export-control','geo-tsmc-geo','geo-india-quad']
+  },
+
+  'geo-tsmc-geo': {
+    title: '台积电：全球最关键的地缘政治资产——量子时代来临前，半导体依然决定战略胜负',
+    subtitle: '台积电生产着全球约90%的最先进芯片，其位于台湾的生产基地被战略学者称为"硅盾"。美国、日本、欧盟竞相吸引台积电落地，折射出先进半导体制造在大国博弈中的核心地位。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '赵恒远', role: '产业地缘政治编辑', date: '2026年2月8日', readTime: '10',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#064e3b,#0f172a)', letter:'TSMC' },
+    tags: ['台积电','台湾','硅盾','芯片地缘政治','美国','日本','欧盟'],
+    keyPoints: [
+      '台积电生产全球约90%的5nm以下先进芯片，iPhone、NVIDIA GPU、AMD CPU均依赖其代工',
+      '台积电亚利桑那州Fab 21：N4制程，获527亿美元CHIPS法案补贴中的约66亿美元',
+      '台积电日本熊本工厂（JASM）：N12制程，索尼与丰田联合参股，日本政府补贴近50%建设成本',
+      '分析人士：台湾若发生冲突，全球芯片供应链将面临"毁灭性"中断，影响远超COVID-19'
+    ],
+    body: `<p>"硅盾"（Silicon Shield）这一概念最初由科技作家克雷格·艾迪生（Craig Addison）于2001年提出，其核心论点是：台湾对全球半导体供应链的不可替代性，将使任何意图对台湾采取军事行动的大国三思而后行——因为冲突将导致全球芯片供应链中断，损害的不仅仅是台湾，也包括攻击方本身。20年后，这一理论因台积电的崛起而获得了更为实质的支撑。</p>
+    <div class="pq"><p>"台积电不是一家公司，它是台湾与全球的战略纽带。它的安全就是全球供应链的安全，这是一个国家最好的护身符，也是它最大的战略脆弱性。"</p><cite>— 半导体行业分析师Dan Wang，荣鼎咨询，2023年</cite></div>
+    <p>台积电目前生产着全球约90%的5nm以下先进制程芯片，其客户包括苹果（iPhone处理器）、NVIDIA（H系列AI GPU）、AMD（Ryzen与EPYC处理器）、高通（骁龙系列）等几乎所有全球顶级芯片设计公司。在美国压力下，台积电于2020年宣布赴美建厂计划，其亚利桑那州Fab 21晶圆厂获得CHIPS法案约66亿美元直接补贴，并追加了100亿美元的设备与建设投资，这是台积电历史上在台湾以外规模最大的单笔海外投资。</p>
+    <p>在日本，台积电与索尼半导体（持股约10%）和丰田汽车（持股约2%）共同在熊本县设立合资企业JASM（Japan Advanced Semiconductor Manufacturing），一期工厂于2024年2月开幕，日本政府承担约50%的建设成本（约4760亿日元补贴），生产N28至N12制程芯片，主要面向汽车电子与工业控制市场。二期工厂计划生产N6制程，2027年运营。欧盟亦通过《欧洲芯片法案》（European Chips Act）提供430亿欧元支持，吸引台积电在德国德累斯顿建厂。尽管如此，业界普遍认为，即使上述海外扩产计划全部落地，台湾仍将在至少十年内继续主导全球最先进芯片的生产——"硅盾"远未消失。</p>`,
+    related: ['geo-tech-coldwar','geo-export-control','china-chip']
+  },
+
+  'geo-pqc-migration': {
+    title: 'NIST后量子密码标准正式发布：CRYSTALS-Kyber成为全球加密基础设施升级核心',
+    subtitle: '2024年8月，NIST正式发布三项后量子密码学联邦信息处理标准，终结长达8年的全球标准化竞赛。谁已准备好，谁还在拖延？',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '吴晓峰', role: '网络安全编辑', date: '2026年2月5日', readTime: '9',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#7c3aed,#2e1065)', letter:'PQC' },
+    tags: ['后量子密码','NIST','CRYSTALS-Kyber','ML-KEM','标准化','网络安全'],
+    keyPoints: [
+      '2024年8月：NIST正式发布FIPS 203（ML-KEM）、FIPS 204（ML-DSA）、FIPS 205（SLH-DSA）三项PQC标准',
+      'ML-KEM（前身CRYSTALS-Kyber）用于密钥封装，ML-DSA用于数字签名，二者均基于格密码学',
+      'Google Chrome、Apple iOS、Signal等主流产品已开始或完成混合PQC部署',
+      '全球企业平均后量子迁移准备度评分（Ponemon Institute）：仅39%，金融与医疗行业落后最明显'
+    ],
+    body: `<p>2024年8月13日，美国国家标准与技术研究院（NIST）正式发布了后量子密码学领域的三项联邦信息处理标准（FIPS），标志着这场历时8年、共有来自全球25个国家69支团队参与的密码学马拉松终于画上句点。三项标准分别是：FIPS 203（ML-KEM，基于CRYSTALS-Kyber算法，用于密钥封装机制）、FIPS 204（ML-DSA，基于CRYSTALS-Dilithium，用于数字签名）和FIPS 205（SLH-DSA，基于SPHINCS+，作为数字签名备选方案）。</p>
+    <div class="pq"><p>"这是密码学历史上一次真正的范式转换。我们不是在打补丁，我们是在为整个互联网的安全基础换地基。"</p><cite>— NIST计算机安全部门主任 Lily Chen</cite></div>
+    <p>三项标准的核心技术来源——格密码学（Lattice-based Cryptography）——之所以被认为能够抵抗量子计算攻击，是因为其安全性依赖于"最短向量问题"（SVP）和"学习带误差问题"（LWE）的计算难度，而目前已知的量子算法（包括Shor算法）对这类问题并不具备指数级加速优势。这与RSA和ECC所依赖的大整数分解和离散对数问题截然不同——后两者可被Shor算法在多项式时间内破解。</p>
+    <p>在实际部署进展方面，各行业差异显著。科技巨头行动最为迅速：Google于2023年在Chrome浏览器中为TLS 1.3握手引入了CRYSTALS-Kyber与X25519的混合密钥交换方案；Apple在iOS 17.4及macOS 14.4中为iMessage引入了后量子加密层（PQ3协议）；Signal Messenger亦于2024年完成协议升级。金融与医疗行业则进度明显滞后——Ponemon Institute 2024年调查显示，全球企业平均后量子迁移准备度评分仅为39%，金融服务与医疗行业由于大量依赖遗留系统（Legacy Systems），实际迁移工作量可能比科技公司高出5至10倍。</p>`,
+    related: ['geo-fbi-quantum','geo-eu-quantum','geo-g7']
+  },
+
+  'geo-russia-quantum': {
+    title: '俄罗斯量子计划在制裁重压下步履维艰：西方设备断供使核心实验室陷入困境',
+    subtitle: '2022年乌克兰战争爆发后，西方对俄制裁切断了俄罗斯量子研究机构获取超导量子比特核心设备的渠道，部分研究项目已陷入停滞，但俄方同时加速与中国的量子合作。',
+    category: '地缘政治', catPage: 'geopolitics.html', catNav: 1,
+    author: '林晨曦', role: '欧亚事务编辑', date: '2026年2月3日', readTime: '8',
+    hero: { type:'grad', bg:'linear-gradient(135deg,#be123c,#450a0a)', letter:'俄罗斯' },
+    tags: ['俄罗斯','制裁','量子计算','乌克兰战争','中俄合作','技术封锁'],
+    keyPoints: [
+      '俄罗斯国家原子能集团（Rosatom）主导量子计划，目标2024年建造100+量子比特系统',
+      '2022年制裁后，稀释制冷机（Oxford Instruments、Bluefors等西方供应商）出口被封锁',
+      '俄罗斯量子中心（RQC）、斯科尔科沃研究所等核心机构报告设备采购受到严重限制',
+      '俄中量子通信卫星合作协议传出，但实质进展有限；俄方转向国产化路线但差距巨大'
+    ],
+    body: `<p>2022年2月俄罗斯入侵乌克兰之前，俄罗斯在量子计算领域已积累了相当的研究基础。由国家原子能集团（Rosatom）主导的"量子计算机发展路线图"于2020年获批，总预算约258亿卢布（约合3.5亿美元），目标是在2024年建造一台超过100量子比特的量子计算机，并于2030年实现1000量子比特系统。核心研究机构包括俄罗斯量子中心（RQC，由Vnesheconombank及私人资本支持）、斯科尔科沃创新中心（Skolkovo）下属的量子信息科学实验室，以及莫斯科物理技术学院（MIPT）量子组。</p>
+    <div class="pq"><p>"我们的超导量子比特实验进度已推迟了至少18个月。稀释制冷机是不可替代的核心设备，而我们现在无法合法获取任何来自西方的新设备。"</p><cite>— 俄罗斯量子研究机构人员（匿名），接受《自然》杂志采访，2023年</cite></div>
+    <p>2022年西方制裁实施后，俄罗斯量子研究机构面临的最核心困境是稀释制冷机（Dilution Refrigerator）的断供。超导量子比特需要在接近绝对零度（约15毫开尔文）的环境下运行，而全球稀释制冷机的主要供应商——芬兰Bluefors、英国Oxford Instruments、荷兰Leiden Cryogenics——均为西方企业，已依据制裁令停止向俄方出口。中国的稀释制冷机产业尚处于起步阶段，本源量子等企业虽有在研产品，但性能与可靠性与国际顶级产品仍存在差距。</p>
+    <p>在应对策略上，俄罗斯正在推进两条路线：一是加速国产替代，Rosatom旗下研究所已启动国产稀释制冷机研制项目，但工程复杂度极高，短期内难以填补空缺；二是深化与中国的量子技术合作。2023年，中俄双方签署了关于量子通信卫星合作的框架协议，但业界分析人士指出，双方在量子计算核心技术上的深度合作面临巨大障碍——不仅因为各自技术路线存在差异，更因为中国在战略上也不愿意向俄方提供可能引发西方二级制裁风险的高敏感度技术转让。</p>`,
+    related: ['geo-tech-coldwar','geo-export-control','geo-eu-quantum']
+  }
+};
+
+/* ── RENDER ──────────────────────────────────────────────────────────────── */
+const NAV_LABELS = ['科技','地缘政治','量子计算','人工智能','网络安全','市场'];
+const NAV_PAGES  = ['keji.html','geopolitics.html','quantum.html','ai.html','security.html','markets.html'];
+
+function getParam(k){ return new URLSearchParams(location.search).get(k); }
+
+function heroHTML(){ return ''; }
+
+function relCard(id){
+  const a = DB[id]; if(!a) return '';
+  return `<a class="rel-card" href="article.html?id=${id}">
+    <div class="rel-body">
+      <div class="rl">${a.category}</div>
+      <h3>${a.title}</h3>
+      <div class="rm">${a.date} · ${a.readTime}分钟阅读</div>
+    </div></a>`;
+}
+
+function render(){
+  const id = getParam('id');
+  const a  = DB[id];
+  const root = document.getElementById('article-root');
+  const relRoot = document.getElementById('related-root');
+
+  if(!a){
+    root.innerHTML = `<div class="not-found"><h2>404 — 文章未找到</h2><p>该页面不存在或已被移除。</p><a href="index.html">返回首页</a></div>`;
+    return;
+  }
+
+  /* page title */
+  document.getElementById('page-title').textContent = a.title + ' — QuanTimes';
+
+  /* breadcrumb */
+  document.getElementById('bc-cat').textContent = a.category;
+  document.getElementById('bc-cat').href = a.catPage;
+  document.getElementById('bc-title').textContent = a.title;
+
+  /* highlight nav */
+  const navLinks = document.querySelectorAll('#main-nav a');
+  if(navLinks[a.catNav]) navLinks[a.catNav].classList.add('active');
+
+  /* key points */
+  const kpHTML = a.keyPoints ? `<div class="kp-box"><h4>核心要点</h4><ul>${a.keyPoints.map(p=>`<li>${p}</li>`).join('')}</ul></div>` : '';
+
+  /* tags */
+  const tagsHTML = `<div class="tags">${a.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>`;
+
+  /* share */
+  const shareHTML = `<div class="share-row">
+    <button class="sbtn tw" onclick="window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent(document.title)+'&url='+encodeURIComponent(location.href),'_blank','width=600,height=400')">𝕏 分享</button>
+    <button class="sbtn li" onclick="window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(location.href),'_blank','width=600,height=400')">LinkedIn</button>
+    <button class="sbtn cp" onclick="navigator.clipboard.writeText(location.href)">🔗 复制链接</button>
+  </div>`;
+
+  root.innerHTML = `<div class="art-wrap">
+    <span class="sec-label">${a.category}</span>
+    <h1 class="art-title">${a.title}</h1>
+    <p class="art-sub">${a.subtitle}</p>
+    <div class="art-meta">
+      <span class="au">${a.author} · ${a.role}</span>
+      <span>·</span><span>${a.date}</span>
+      <span>·</span><span>阅读约 ${a.readTime} 分钟</span>
+    </div>
+    ${shareHTML}
+    ${heroHTML(a)}
+    ${kpHTML}
+    <div class="body-copy">${a.body}</div>
+    ${tagsHTML}
+  </div>`;
+
+  /* related */
+  if(a.related && a.related.length){
+    relRoot.innerHTML = `<div class="rel-section">
+      <div style="border-top:2px solid #e5e7eb;padding-top:36px;margin-top:0;">
+        <div class="rel-hdr">相关报道</div>
+        <div class="rel-grid">${a.related.map(relCard).join('')}</div>
+      </div>
+    </div>`;
+  }
+}
+
+/* reading progress */
+window.addEventListener('scroll',()=>{
+  const d=document.documentElement;
+  document.getElementById('prog').style.width=Math.min(d.scrollTop/(d.scrollHeight-d.clientHeight)*100,100)+'%';
+});
+
+/* live date */
+document.getElementById('live-date').textContent=new Intl.DateTimeFormat('zh-CN',{year:'numeric',month:'long',day:'numeric'}).format(new Date());
+
+render();
+</script>
+</body>
+</html>

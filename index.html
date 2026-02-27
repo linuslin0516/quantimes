@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中国发布"亚当"量子计算机，或引发全球计算格局巨变 — QuanTimes</title>
+  <meta name="description" content="中国宣布推出全球首台完全功能量子计算机"亚当"，若获验证，或将重塑全球计算、网络安全与人工智能基础设施。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:       #c0392b;
+      --red-dark:  #96281b;
+      --ink:       #1a1a1a;
+      --ink-light: #3d3d3d;
+      --muted:     #6b7280;
+      --border:    #e5e7eb;
+      --bg:        #fafafa;
+      --white:     #ffffff;
+      --accent:    #1d4ed8;
+      --gold:      #b45309;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── BREAKING BANNER ── */
+    .breaking-banner {
+      background: var(--red);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 7px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .breaking-banner span.label {
+      background: #fff;
+      color: var(--red);
+      padding: 2px 8px;
+      border-radius: 2px;
+      margin-right: 10px;
+      font-size: 11px;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      background: var(--ink);
+      color: #fff;
+      padding: 0 24px;
+      position: sticky;
+      top: 32px;
+      z-index: 99;
+      box-shadow: 0 2px 8px rgba(0,0,0,.35);
+    }
+    .masthead-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 56px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      color: #fff;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .logo span { color: var(--red); }
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: #d1d5db;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: .04em;
+      padding: 4px 10px;
+      border-radius: 3px;
+      transition: background .15s, color .15s;
+    }
+    .nav-links a:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .nav-date {
+      font-size: 11.5px;
+      color: #9ca3af;
+      white-space: nowrap;
+    }
+
+    /* ── LAYOUT ── */
+    .page-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .page-wrap { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    /* ── ARTICLE ── */
+    article { min-width: 0; }
+
+    .section-label {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+
+    .article-headline {
+      font-family: 'Noto Serif SC', 'Georgia', serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 900;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 16px;
+      letter-spacing: -.01em;
+    }
+
+    .article-subheadline {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(16px, 2.2vw, 20px);
+      font-weight: 400;
+      color: var(--ink-light);
+      border-left: 4px solid var(--red);
+      padding-left: 16px;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .article-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      align-items: center;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .meta-author { font-weight: 600; color: var(--ink-light); }
+    .meta-dot { color: #d1d5db; }
+    .meta-badge {
+      background: #fef3c7;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 2px;
+      letter-spacing: .06em;
+    }
+
+    /* share row */
+    .share-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: .04em;
+      transition: opacity .15s;
+    }
+    .share-btn:hover { opacity: .82; }
+    .share-btn.twitter  { background: #000; color: #fff; }
+    .share-btn.linkedin { background: #0a66c2; color: #fff; }
+    .share-btn.wechat   { background: #07c160; color: #fff; }
+    .share-btn.copy     { background: var(--border); color: var(--ink-light); }
+
+    /* hero image */
+    .hero-img-wrap {
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f2137 70%, #0a0a2e 100%);
+      aspect-ratio: 16/8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+    }
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 24px;
+    }
+    .hero-overlay h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: .06em;
+      text-shadow: 0 0 40px rgba(56,189,248,.6), 0 2px 20px rgba(0,0,0,.8);
+    }
+    .hero-overlay p {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 8px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .img-caption {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* body copy */
+    .body-copy {
+      font-family: 'Noto Serif SC', 'Georgia', serif;
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--ink);
+    }
+    .body-copy p { margin-bottom: 22px; }
+    .body-copy h3 {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      margin: 36px 0 14px;
+      color: var(--ink);
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .body-copy h3::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--red);
+      margin-right: 10px;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
+
+    /* pull quote */
+    .pull-quote {
+      border-left: 4px solid var(--red);
+      margin: 32px 0;
+      padding: 18px 24px;
+      background: #f8f9fa;
+      border-radius: 0 6px 6px 0;
+    }
+    .pull-quote p {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 19px;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .pull-quote cite {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 10px;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    /* key points box */
+    .key-points {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .key-points h4 {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .key-points ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .key-points li {
+      font-family: 'Noto Sans SC', sans-serif;
+      font-size: 14px;
+      color: #1e3a5f;
+      padding-left: 20px;
+      position: relative;
+    }
+    .key-points li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 9px;
+      top: 5px;
+    }
+
+    /* signals watch */
+    .watch-list {
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 6px;
+      padding: 22px 24px;
+      margin: 28px 0;
+    }
+    .watch-list h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 14px;
+    }
+    .watch-list ol {
+      list-style: none;
+      counter-reset: watch;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .watch-list li {
+      counter-increment: watch;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14.5px;
+      color: #e2e8f0;
+    }
+    .watch-list li::before {
+      content: counter(watch, decimal-leading-zero);
+      flex-shrink: 0;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: .04em;
+      margin-top: 2px;
+    }
+
+    /* tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 36px 0 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: var(--border);
+      color: var(--ink-light);
+      text-decoration: none;
+      letter-spacing: .04em;
+      transition: background .15s;
+    }
+    .tag:hover { background: #d1d5db; }
+
+    /* ── SIDEBAR ── */
+    aside { min-width: 0; }
+
+    .sidebar-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .sidebar-card-header {
+      background: var(--ink);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+    }
+    .sidebar-card-body { padding: 16px; }
+
+    /* related links */
+    .related-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .related-list li { border-bottom: 1px solid var(--border); }
+    .related-list li:last-child { border-bottom: none; }
+    .related-list a {
+      display: block;
+      padding: 12px 0;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--ink-light);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color .15s;
+    }
+    .related-list a:hover { color: var(--accent); }
+    .related-list .src {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+      font-weight: 400;
+    }
+
+    /* data card */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 12px 8px;
+      background: #f9fafb;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+    }
+    .stat-item .val {
+      display: block;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1.1;
+    }
+    .stat-item .lbl {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    /* context timeline */
+    .timeline { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .timeline li {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .timeline li:last-child { border-bottom: none; }
+    .tl-year {
+      flex-shrink: 0;
+      font-weight: 700;
+      color: var(--red);
+      font-size: 12px;
+      width: 36px;
+      padding-top: 2px;
+    }
+    .tl-text { color: var(--ink-light); line-height: 1.45; }
+
+    /* newsletter */
+    .newsletter input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 13px;
+      margin-bottom: 8px;
+      font-family: inherit;
+    }
+    .newsletter button {
+      width: 100%;
+      padding: 9px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: .06em;
+      transition: background .15s;
+    }
+    .newsletter button:hover { background: var(--red-dark); }
+    .newsletter p {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111;
+      color: #9ca3af;
+      padding: 40px 24px 24px;
+      margin-top: 60px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #374151;
+    }
+    .footer-col h4 {
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col a {
+      color: #9ca3af;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .15s;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 20px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11.5px;
+    }
+    .disclaimer {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 4px;
+      padding: 10px 14px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      margin-top: 12px;
+      color: #6b7280;
+    }
+    .disclaimer strong { color: #9ca3af; }
+
+    /* reading progress */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: var(--red);
+      z-index: 200;
+      width: 0%;
+      transition: width .1s linear;
+    }
+
+    /* copy toast */
+    #toast {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      background: #111;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+      z-index: 999;
+    }
+    #toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div id="toast">已复制链接 ✓</div>
+
+<!-- BREAKING BANNER -->
+<div class="breaking-banner">
+  <span class="label">Breaking</span>
+  全球科技竞赛重燃 — 中国量子计算突破性宣告震动国际社会
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="logo" href="#">Quantum<span>Times</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="keji.html">科技</a></li>
+        <li><a href="geopolitics.html">地缘政治</a></li>
+        <li><a href="quantum.html">量子计算</a></li>
+        <li><a href="ai.html">人工智能</a></li>
+        <li><a href="security.html">网络安全</a></li>
+        <li><a href="markets.html">市场</a></li>
+      </ul>
+    </nav>
+    <span class="nav-date" id="live-date">2026年2月26日</span>
+  </div>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="page-wrap">
+
+  <!-- ── ARTICLE ── -->
+  <article>
+    <span class="section-label">科技 · 量子计算</span>
+
+    <h1 class="article-headline">
+      中国发布代号"亚当"量子计算机，声称全球首台完全功能机型，或引发全球计算格局巨变
+    </h1>
+
+    <p class="article-subheadline">
+      若该宣告获独立验证，将对全球计算基础设施、网络安全体系及人工智能发展产生深远影响，并可能彻底改写现有加密标准。
+    </p>
+
+    <div class="article-meta">
+      <span class="meta-author">林晨曦 · 科技编辑</span>
+      <span class="meta-dot">·</span>
+      <span>QuanTimes 全球科技组</span>
+      <span class="meta-dot">·</span>
+      <span>2026年2月26日 &nbsp;08:47 UTC+8</span>
+      <span class="meta-dot">·</span>
+      <span>阅读时间约 8 分钟</span>
+      <span class="meta-badge">独家报道</span>
+    </div>
+
+    <!-- share -->
+    <div class="share-row">
+      <button class="share-btn twitter" onclick="shareTwitter()">𝕏 分享</button>
+      <button class="share-btn linkedin" onclick="shareLinkedIn()">LinkedIn</button>
+      <button class="share-btn wechat">微信</button>
+      <button class="share-btn copy" onclick="copyLink()">🔗 复制链接</button>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero-img-wrap">
+      <canvas class="hero-canvas" id="hero-canvas"></canvas>
+      <div class="hero-overlay">
+        <h2>ADAM</h2>
+        <p>量子计算 · 全球首台 · 中国发布</p>
+      </div>
+    </div>
+    <p class="img-caption">示意图：代号"亚当"量子处理器架构概念渲染图。图片来源：QuanTimes 制图</p>
+
+    <!-- KEY POINTS -->
+    <div class="key-points">
+      <h4>核心要点</h4>
+      <ul>
+        <li>中国官方机构宣布完成代号"亚当"的全功能量子计算机研发</li>
+        <li>"亚当"声称实现稳定多量子比特相干性，传统超级计算机需数年完成的运算可在数分钟内完成</li>
+        <li>若验证属实，现有RSA及AES等主流加密体系将面临根本性威胁</li>
+        <li>独立机构尚未完成同行评审，科学界保持审慎立场</li>
+        <li>美欧亚各国量子研究机构已发表声明，密切关注后续进展</li>
+      </ul>
+    </div>
+
+    <!-- BODY -->
+    <div class="body-copy">
+
+      <p>
+        中国宣布推出其描述为全球首台完全运行量子计算机的装置，代号"亚当"（Adam）——这一消息若获证实，或将标志全球科技竞赛迎来决定性转折点。据参与项目的官方机构的初步声明，"亚当"系统已成功在实验室环境下完成多项基准测试，初步结果显示其运算能力超越现有任何经典计算体系。
+      </p>
+
+      <p>
+        消息一经披露，迅速引发国际科技界、金融市场及各国政府的高度关注。量子计算领域多年来始终被视为"下一代信息基础设施"的核心竞争赛道，然而距离真正意义上的"量子优越性"在实用层面的实现，科学界始终存在较大分歧。
+      </p>
+
+      <h3>"亚当"的诞生地：合肥，中国量子科研核心基地</h3>
+
+      <figure style="margin:0 0 22px;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+        <img src="1693558498842015552.png" alt="国家量子信息科学实验室园区鸟瞰图，合肥" style="width:100%;display:block;max-height:420px;object-fit:cover;" />
+        <figcaption style="font-size:12px;color:var(--muted);padding:8px 12px;background:#f9fafb;font-style:italic;">
+          国家量子信息科学实验室园区鸟瞰，位于安徽省合肥市高新技术开发区。该园区被业界称为中国"量子硅谷"核心地带。图片来源：新华社
+        </figcaption>
+      </figure>
+
+      <p>
+        据悉，"亚当"项目由位于安徽省<strong>合肥</strong>的多个顶级研究机构联合主导，核心团队来自<strong>中国科学技术大学（USTC）</strong>、<strong>中国科学院量子信息重点实验室</strong>以及<strong>国家量子信息科学实验室</strong>。合肥被业界称为中国的"量子硅谷"——自2017年国家量子信息科学实验室在此奠基以来，当地已形成学术机构、国有研究院与产业公司高度协同的完整生态圈，本土量子企业<strong>本源量子（Origin Quantum）</strong>亦脱胎于此。
+      </p>
+
+      <p>
+        此前，USTC团队曾先后发布光子量子计算系统"九章（Jiuzhang）"与超导量子处理器"祖冲之（Zuchongzhi）"，均在特定任务上展示出远超经典计算机的计算速度，并发表于《Science》《Nature》等顶级期刊。"亚当"被描述为上述两条技术路线多年积累后的融合性产物。
+      </p>
+
+      <figure style="margin:0 0 22px;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+        <img src="117750272_996be1b5-9a73-4a0d-8216-b92c42cad7de.png" alt="合肥高新区主干道，量子大道" style="width:100%;display:block;max-height:340px;object-fit:cover;" />
+        <figcaption style="font-size:12px;color:var(--muted);padding:8px 12px;background:#f9fafb;font-style:italic;">
+          合肥高新技术开发区主干道。近年来，数十家量子科技企业在此聚集，形成以USTC为核心的产学研一体化生态。图片来源：合肥市人民政府新闻办公室
+        </figcaption>
+      </figure>
+
+      <h3>"亚当"的技术架构：超导与光子的混合路线</h3>
+
+      <figure style="margin:0 0 22px;border-radius:6px;overflow:hidden;border:1px solid var(--border);">
+        <img src="19c5acf0903dbc4fc7c941134930f22b.jpg" alt="量子计算实验室内的自动化精密操作系统" style="width:100%;display:block;max-height:380px;object-fit:cover;object-position:center top;" />
+        <figcaption style="font-size:12px;color:var(--muted);padding:8px 12px;background:#f9fafb;font-style:italic;">
+          量子计算实验室内的精密自动化操控系统，用于量子芯片的组装与测试流程。此类设备在超低温环境下对量子处理器进行纳米级精度的操控与校准。图片来源：新华社
+        </figcaption>
+      </figure>
+
+      <p>
+        根据目前已对外披露的初步技术信息，"亚当"系统采用<strong>超导量子比特（superconducting qubits）与光子互联（photonic interconnects）的混合架构</strong>，这是中国量子研究团队区别于谷歌、IBM单纯超导路线的关键差异点。系统运行于接近绝对零度（约15毫开尔文）的超低温环境中，由多层铝制超导电路构成核心处理单元，并通过光子波导在不同量子模块之间传递量子态信息，从而将多个量子处理单元整合为统一的计算系统。
+      </p>
+
+      <p>
+        其核心突破在于实现了<strong>大规模稳定多量子比特相干性</strong>（stable multi-qubit coherence），这一直被视为量子计算从实验室走向实用化的最大技术障碍。
+      </p>
+
+      <p>
+        量子比特（qubit）不同于经典计算机的二进制位——其可以同时处于0与1的叠加态（superposition），并通过量子纠缠（entanglement）在多个量子比特间建立关联，从而实现指数级计算速度提升。然而，量子比特极易受到外部环境干扰，导致信息在极短时间内"退相干"（decoherence），这也是此前多数量子系统仅能在极低温度和高度隔离环境下短暂运行的原因。
+      </p>
+
+      <div class="pull-quote">
+        <p>"若'亚当'所展示的相干时间与量子比特规模属实，这将意味着量子纠错领域的范式转移，而非仅仅是工程上的渐进改进。"</p>
+        <cite>— 欧洲量子信息研究所（EQIS）首席科学家 Dr. Anna Fehr 接受采访时表示</cite>
+      </div>
+
+      <p>
+        初步披露显示，"亚当"系统所能维持相干性的量子比特数量，已达到此前业界认定的"实用量子计算门槛"的数倍。若经独立机构验证，这将是量子计算史上的一次决定性飞跃——相当于此前处理器发展史上从晶体管到集成电路的跨越。
+      </p>
+
+      <h3>为何重要：加密、人工智能与全球权力的重构</h3>
+
+      <p>
+        "亚当"的潜在影响，远不止于学术领域的技术突破。量子计算机一旦达到足够规模，理论上可在极短时间内破解目前保护全球银行系统、政府通信及互联网基础设施的主流加密算法，包括被广泛使用的 RSA-2048 及椭圆曲线密码学体系（ECC）。
+      </p>
+
+      <p>
+        这一前景在国际安全界早有预警，美国国家安全局（NSA）及多个盟国情报机构早已开始推动"后量子密码学"（Post-Quantum Cryptography，PQC）标准的制定与部署。美国国家标准与技术研究院（NIST）已于2024年正式发布首批 PQC 标准，但全球范围内的系统迁移工作目前仍处于早期阶段。
+      </p>
+
+      <p>
+        除网络安全外，量子计算在药物分子模拟、气候建模、金融风险定价以及人工智能模型训练等领域，均具有变革性潜力。若"亚当"所展示的能力能够在更广泛的应用场景中稳定复现，将意味着上述领域的计算成本与效率格局将发生根本性改变。
+      </p>
+
+      <h3>地缘政治维度：科技冷战的新前线</h3>
+
+      <p>
+        此次宣告所引发的反应，并不仅仅停留在科学讨论层面。量子计算与半导体、人工智能一道，早已成为大国科技博弈的核心战场。美国、欧盟、日本、英国及加拿大近年来已相继出台量子计算国家战略，并向相关研究项目注入数十亿美元资金。
+      </p>
+
+      <p>
+        分析人士指出，如果中国率先在实用量子计算领域取得决定性优势，将对现有的全球科技主导格局产生深刻影响——不仅体现在军事与情报领域，更将波及全球供应链、金融体系与外交议价能力。
+      </p>
+
+      <div class="pull-quote">
+        <p>"这不仅仅是一个科学里程碑。如果消息属实，我们正在谈论的，是自原子弹以来最具战略意义的单一技术突破。"</p>
+        <cite>— 美国智库战略与国际研究中心（CSIS）高级研究员 James Whitmore</cite>
+      </div>
+
+      <p>
+        美国商务部及国防高级研究计划局（DARPA）的发言人已发表声明，表示正在"密切关注并评估相关信息"。欧盟量子旗舰计划（Quantum Flagship）亦发表简短声明，呼吁"通过开放科学渠道进行独立核实"。
+      </p>
+
+      <h3>审慎立场：科学界尚未背书</h3>
+
+      <p>
+        然而，科学界对这一宣告的态度，整体保持审慎。多位独立研究人员指出，量子计算领域的重大宣告历来需要严格的同行评审才能确认，而此类宣告往往在初步披露阶段存在夸大或误读的情况。
+      </p>
+
+      <p>
+        麻省理工学院量子信息中心的 Dr. Sarah Chen 在接受媒体采访时表示："我们需要看到完整的技术报告、原始数据，以及在可重复条件下由第三方完成的基准测试结果。量子计算领域不乏令人振奋的初步宣告，但历史告诉我们，'宣告'与'验证'之间往往存在巨大距离。"
+      </p>
+
+      <p>
+        值得注意的是，谷歌在2019年宣称实现"量子霸权"（Quantum Supremacy）时，IBM 等竞争方随即提出了对其测试方法的质疑；此后数年，量子纠错效率的提升远比预期缓慢。这一历史先例，使科学界对于"里程碑式宣告"保持了更高的核实门槛。
+      </p>
+
+      <h3>后续关键信号</h3>
+
+      <div class="watch-list">
+        <h4>市场与科研观察者正在追踪以下指标</h4>
+        <ol>
+          <li>独立机构是否能够在受控条件下复现"亚当"的基准测试结果</li>
+          <li>完整技术报告是否于国际同行评审期刊正式发表（如《Nature》或《Science》）</li>
+          <li>是否有主权基金、央行或战略级机构启动量子安全迁移的紧急采购程序</li>
+          <li>美国、欧盟是否将于未来90天内发布新的出口管制或量子技术保护法规</li>
+          <li>谷歌、IBM、微软等科技巨头是否加速其量子路线图的公开披露</li>
+        </ol>
+      </div>
+
+      <h3>结语：无论真伪，讨论已无可回避</h3>
+
+      <p>
+        无论"亚当"最终是否代表一项经得起科学检验的真正突破，还是一次尚待验证的早期阶段宣告，它所引发的全球性讨论已无可回避。在量子计算、人工智能与地缘政治深度交织的当下，一个国家在关键技术领域的"率先宣告"，本身便已构成一种战略信号。
+      </p>
+
+      <p>
+        国际社会接下来数周内的反应——无论是科学共同体的核实结果、各国政府的政策回应，还是金融市场的价格信号——或许将比"亚当"本身更能说明，这个时代正在进入怎样的技术与地缘新纪元。
+      </p>
+
+    </div><!-- /body-copy -->
+
+    <!-- TAGS -->
+    <div class="tags">
+      <a class="tag" href="#">量子计算</a>
+      <a class="tag" href="#">中国科技</a>
+      <a class="tag" href="#">网络安全</a>
+      <a class="tag" href="#">人工智能</a>
+      <a class="tag" href="#">地缘政治</a>
+      <a class="tag" href="#">加密技术</a>
+      <a class="tag" href="#">科技战</a>
+      <a class="tag" href="#">后量子密码学</a>
+      <a class="tag" href="#">NIST</a>
+      <a class="tag" href="#">量子霸权</a>
+    </div>
+
+  </article>
+
+  <!-- ── SIDEBAR ── */-->
+  <aside>
+
+    <!-- INSTITUTIONS -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">核心参与机构</div>
+      <div class="sidebar-card-body">
+        <ul class="related-list">
+          <li>
+            <a href="https://www.ustc.edu.cn" target="_blank" rel="noopener">
+              中国科学技术大学（USTC）
+              <span class="src">安徽省合肥 · 量子信息学科全国第一</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://lqcc.ustc.edu.cn" target="_blank" rel="noopener">
+              中科院量子信息重点实验室
+              <span class="src">合肥 · 超导与光子双路线研发中心</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" target="_blank" rel="noopener">
+              国家量子信息科学实验室
+              <span class="src">合肥 · 2017年国家战略级实验室</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.originqc.com.cn" target="_blank" rel="noopener">
+              本源量子（Origin Quantum）
+              <span class="src">合肥 · 中国首家量子计算企业（USTC孵化）</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.quantum-info.com" target="_blank" rel="noopener">
+              国盾量子（QuantumCTek）
+              <span class="src">合肥 · 量子通信与计算硬件制造商</span>
+            </a>
+          </li>
+        </ul>
+        <div style="margin-top:12px;padding:10px 12px;background:#fef9ec;border:1px solid #fde68a;border-radius:4px;font-size:12px;color:#92400e;line-height:1.5;">
+          <strong>技术路线：</strong>超导量子比特（~15 mK 超低温运行）＋ 光子波导互联模块，融合"祖冲之"超导平台与"九章"光子架构。
+        </div>
+      </div>
+    </div>
+
+    <!-- KEY DATA -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">关键数据参考</div>
+      <div class="sidebar-card-body">
+        <div class="stat-grid">
+          <div class="stat-item"><span class="val">$33B</span><span class="lbl">2025年全球量子计算市场规模</span></div>
+          <div class="stat-item"><span class="val">2048+</span><span class="lbl">RSA密钥位数（当前标准）</span></div>
+          <div class="stat-item"><span class="val">&lt;1ms</span><span class="lbl">量子比特典型相干时间目标</span></div>
+          <div class="stat-item"><span class="val">4</span><span class="lbl">NIST已发布PQC标准数量</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RELATED LINKS -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">相关阅读</div>
+      <div class="sidebar-card-body">
+        <ul class="related-list">
+          <li>
+            <a href="https://www.nature.com/subjects/quantum-computing" target="_blank" rel="noopener">
+              量子计算领域最新研究综述
+              <span class="src">Nature · 学术期刊</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://csrc.nist.gov/projects/post-quantum-cryptography" target="_blank" rel="noopener">
+              NIST后量子密码学标准化项目
+              <span class="src">NIST · 美国国家标准局</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://quantumflag.eu" target="_blank" rel="noopener">
+              欧盟量子旗舰计划官方网站
+              <span class="src">Quantum Flagship · 欧盟</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://research.ibm.com/quantum-computing" target="_blank" rel="noopener">
+              IBM量子计算研究进展
+              <span class="src">IBM Research</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://quantumai.google" target="_blank" rel="noopener">
+              Google Quantum AI 最新动态
+              <span class="src">Google</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.csis.org/programs/strategic-technologies-program" target="_blank" rel="noopener">
+              CSIS战略技术项目：量子与科技竞争
+              <span class="src">CSIS · 美国智库</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/quantum-technology" target="_blank" rel="noopener">
+              麦肯锡：量子技术产业影响报告
+              <span class="src">McKinsey & Company</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.economist.com/technology-quarterly/2023/01/04/the-race-to-dominate-quantum-computing" target="_blank" rel="noopener">
+              《经济学人》：量子计算的全球竞赛
+              <span class="src">The Economist</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">量子计算发展时间轴</div>
+      <div class="sidebar-card-body">
+        <ul class="timeline">
+          <li><span class="tl-year">1994</span><span class="tl-text">Peter Shor 发表量子因式分解算法，证明量子计算机可破解RSA加密</span></li>
+          <li><span class="tl-year">2011</span><span class="tl-text">D-Wave 推出首台商用量子退火机，引发广泛争议</span></li>
+          <li><span class="tl-year">2019</span><span class="tl-text">Google 宣称"量子霸权"，53量子比特完成特定任务</span></li>
+          <li><span class="tl-year">2021</span><span class="tl-text">IBM 发布127量子比特处理器 Eagle</span></li>
+          <li><span class="tl-year">2023</span><span class="tl-text">IBM 达成1121量子比特 Condor，NIST发布PQC草案标准</span></li>
+          <li><span class="tl-year">2024</span><span class="tl-text">Google Willow 芯片实现量子纠错里程碑；NIST正式发布PQC标准</span></li>
+          <li><span class="tl-year">2026</span><span class="tl-text">合肥USTC与国家量子实验室联合宣布"亚当"系统，采用超导＋光子混合架构，声称实现完全功能量子计算</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MORE RELATED -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">延伸参考资料</div>
+      <div class="sidebar-card-body">
+        <ul class="related-list">
+          <li>
+            <a href="https://arxiv.org/list/quant-ph/recent" target="_blank" rel="noopener">
+              arXiv量子物理最新预印本论文
+              <span class="src">arXiv · 学术预印本平台</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.reuters.com/technology/quantum-computing/" target="_blank" rel="noopener">
+              路透社：量子计算专题报道
+              <span class="src">Reuters</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.ft.com/quantum-computing" target="_blank" rel="noopener">
+              《金融时报》量子计算专栏
+              <span class="src">Financial Times</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.scmp.com/tech/tech-trends/quantum-computing" target="_blank" rel="noopener">
+              《南华早报》：中国量子技术报道
+              <span class="src">South China Morning Post</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.wired.com/tag/quantum-computing/" target="_blank" rel="noopener">
+              Wired：量子计算深度报道合集
+              <span class="src">Wired Magazine</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://mit.edu/research/quantum" target="_blank" rel="noopener">
+              MIT量子计算研究中心
+              <span class="src">Massachusetts Institute of Technology</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-header">订阅科技简报</div>
+      <div class="sidebar-card-body newsletter">
+        <input type="email" placeholder="请输入您的电子邮件地址" />
+        <button>免费订阅</button>
+        <p>每日精选全球量子计算、人工智能与地缘科技动态，直送您的收件箱。每周五加送深度分析报告。</p>
+      </div>
+    </div>
+
+  </aside>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>QuanTimes</h4>
+      <ul>
+        <li><a href="#">关于我们</a></li>
+        <li><a href="#">编辑方针</a></li>
+        <li><a href="#">联系编辑部</a></li>
+        <li><a href="#">广告合作</a></li>
+        <li><a href="#">投稿指引</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>报道领域</h4>
+      <ul>
+        <li><a href="#">量子计算</a></li>
+        <li><a href="#">人工智能</a></li>
+        <li><a href="#">网络安全</a></li>
+        <li><a href="#">科技地缘政治</a></li>
+        <li><a href="#">半导体产业</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>研究资源</h4>
+      <ul>
+        <li><a href="https://arxiv.org/list/quant-ph/recent" target="_blank" rel="noopener">arXiv 量子物理</a></li>
+        <li><a href="https://csrc.nist.gov/projects/post-quantum-cryptography" target="_blank" rel="noopener">NIST PQC 项目</a></li>
+        <li><a href="https://quantumai.google" target="_blank" rel="noopener">Google Quantum AI</a></li>
+        <li><a href="https://research.ibm.com/quantum-computing" target="_blank" rel="noopener">IBM 量子研究</a></li>
+        <li><a href="https://www.csis.org" target="_blank" rel="noopener">CSIS 战略研究</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>官方媒体参考</h4>
+      <ul>
+        <li><a href="https://www.reuters.com" target="_blank" rel="noopener">Reuters 路透社</a></li>
+        <li><a href="https://www.ft.com" target="_blank" rel="noopener">Financial Times</a></li>
+        <li><a href="https://www.scmp.com" target="_blank" rel="noopener">South China Morning Post</a></li>
+        <li><a href="https://www.wired.com" target="_blank" rel="noopener">Wired</a></li>
+        <li><a href="https://www.economist.com" target="_blank" rel="noopener">The Economist</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 QuanTimes · 保留所有权利</span>
+    <span>隐私政策 · 服务条款 · Cookie 设置</span>
+  </div>
+  <div class="disclaimer" style="max-width:1200px;margin:16px auto 0;">
+    <strong>免责声明：</strong>本文报道基于公开披露信息撰写，所引用专家观点均源自公开采访与声明。"亚当"系统的技术规格及宣告内容尚未经独立机构正式验证，本报道不构成任何投资建议。读者应自行甄别信息来源，并参考经同行评审的学术文献作出判断。
+  </div>
+</footer>
+
+<script>
+  /* ── READING PROGRESS ── */
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  });
+
+  /* ── LIVE DATE ── */
+  (function() {
+    const el = document.getElementById('live-date');
+    const d = new Date();
+    const fmt = new Intl.DateTimeFormat('zh-CN', { year:'numeric', month:'long', day:'numeric' });
+    el.textContent = fmt.format(d);
+  })();
+
+  /* ── SHARE BUTTONS ── */
+  function shareTwitter() {
+    const url = encodeURIComponent(location.href);
+    const text = encodeURIComponent('中国发布"亚当"量子计算机，或引发全球计算格局巨变 #量子计算 #科技 #QuanTimes');
+    window.open('https://twitter.com/intent/tweet?url=' + url + '&text=' + text, '_blank', 'width=600,height=400');
+  }
+  function shareLinkedIn() {
+    const url = encodeURIComponent(location.href);
+    window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url, '_blank', 'width=600,height=400');
+  }
+  function copyLink() {
+    navigator.clipboard.writeText(location.href).then(() => {
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    });
+  }
+
+  /* ── HERO CANVAS — quantum particle animation ── */
+  (function() {
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles, nodes, raf;
+
+    function resize() {
+      W = canvas.offsetWidth;
+      H = canvas.offsetHeight;
+      canvas.width  = W * devicePixelRatio;
+      canvas.height = H * devicePixelRatio;
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+      init();
+    }
+
+    function rand(a, b) { return a + Math.random() * (b - a); }
+
+    function init() {
+      // nodes (qubit positions)
+      nodes = [];
+      const count = Math.floor(W / 80);
+      for (let i = 0; i < count; i++) {
+        nodes.push({ x: rand(W*.05, W*.95), y: rand(H*.15, H*.85) });
+      }
+      // particles
+      particles = [];
+      for (let i = 0; i < 55; i++) {
+        particles.push({
+          x: rand(0, W), y: rand(0, H),
+          vx: rand(-0.4, 0.4), vy: rand(-0.4, 0.4),
+          r: rand(1, 2.5),
+          alpha: rand(0.2, 0.8),
+          hue: rand(180, 220)
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // connections between close particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i+1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d  = Math.sqrt(dx*dx + dy*dy);
+          if (d < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(56,189,248,${(1 - d/100) * 0.25})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // node rings (qubits)
+      nodes.forEach(n => {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 14, 0, Math.PI*2);
+        ctx.strokeStyle = 'rgba(56,189,248,0.18)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 5, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(56,189,248,0.55)';
+        ctx.fill();
+      });
+
+      // particles
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+        if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fillStyle = `hsla(${p.hue},85%,70%,${p.alpha})`;
+        ctx.fill();
+      });
+
+      raf = requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+    window.addEventListener('resize', () => { cancelAnimationFrame(raf); resize(); draw(); });
+  })();
+</script>
+</body>
+</html>
